@@ -1,0 +1,122 @@
+page {
+  background: #f2f2f2;
+}
+
+.personal {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  line-height: 80rpx;
+  color: #fff;
+  background: #3dc5b7;
+  font-size: 26rpx;
+}
+
+.desc {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.img {
+  margin: 20rpx auto;
+}
+
+.img image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-top: 40rpx;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 内容开始 */
+.content {
+  border-radius: 15rpx;
+  padding: 20rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.info-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 700;
+  margin-left: 15rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.adrrs {
+  display: flex;
+  align-items: center;
+  line-height: 80rpx;
+  border-bottom: solid 1px #eee;
+}
+
+.adrrs image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+
+.adr {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+.arrowhead3 {
+  margin-right: 20rpx;
+}
+
+/* 箭头 */
+.arrowhead {
+  position: absolute;
+  left: 30rpx;
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 2rpx solid #fff;
+  border-right: 2rpx solid #fff;
+  transform: rotate(45deg);
+}
+
+.input-message {
+  text-align: right;
+}
+
+/* 箭头 */
+.arrowhead1 {
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 2rpx solid #333;
+  border-right: 2rpx solid #333;
+  transform: rotate(45deg);
+  margin-right: 28rpx;
+}
+
+.hospital-select{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  color: #a9a9a9;
+}
+
+.submit-button {
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: #91C8E4;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}

@@ -1,0 +1,80 @@
+<view style="height:100%">
+  <view class="user">
+    <view class="user-bg"
+      style="background:#fff;">
+      <image class="user-img" src="{{userInfo.userAvatar}}"></image>
+      <view style="margin: 41rpx;color:#333">
+        <view class='header-name'>用户名:{{userInfo.userNickName}}</view>
+         <view class="user-title">手机号:{{userInfo.userPhone}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="user-btn">
+    <text>会员余额：</text>
+    <text class="user-price-num">￥{{canAmount}}</text>
+  </view>
+  <view class="user-content">
+    <view class="content-title">基本信息</view>
+    <view class="icons">
+      <view class="list">
+        <view class="icon" bindtap="GoPersonal">
+          <image src="/images/icon/data.png"></image>
+          <view class="icon-desc">个人资料</view>
+        </view>
+        <view class="icon" bindtap="GoShowAddress">
+          <image src="/images/icon/list.png"></image>
+          <view class="icon-desc">地址列表</view>
+        </view>
+        <!-- <view class="icon">
+          <image src="/images/icon/canteen.png"></image>
+          <view class="icon-desc">绑定食堂</view>
+        </view> -->
+        <view class="icon" bindtap="GoRecharge">
+          <image src="/images/icon/record.png"></image>
+          <view class="icon-desc">充值记录</view>
+        </view>
+        <view class="icon" bindtap="GoOrder">
+          <image src="/images/icon/consumption.png"></image>
+          <view class="icon-desc">优惠券</view>
+        </view>
+        <view class="icon" bindtap="showTip">
+          <image src="/images/icon/news.png"></image>
+          <view class="icon-desc">生日提醒</view>
+        </view>
+        <view class="icon" bindtap="GoHelp">
+          <image src="/images/icon/help.png"></image>
+          <view class="icon-desc">帮助中心</view>
+        </view>
+        <!-- <view class="icon" bindtap="showTip">
+          <image src="/images/icon/play.png"></image>
+          <view class="icon-desc">支付二维码</view>
+        </view> -->
+        <!-- <view class="icon">
+          <image src="/images/icon/ding.png"></image>
+          <view class="icon-desc">订餐二维码</view>
+        </view> -->
+        <!-- <view class="icon">
+          <image src="/images/icon/apply.png"></image>
+          <view class="icon-desc">申请代理</view>
+        </view> -->
+        <!-- <view class="icon">
+          <image src="/images/icon/bangka.png"></image>
+          <view class="icon-desc">绑卡记录</view>
+        </view> -->
+        <view class="icon" bindtap="ShowAuthentication">
+          <image src="/images/icon/workers.png"></image>
+          <view class="icon-desc">职工认证</view>
+        </view>
+        <!-- <view class="icon" bindtap="ShowChangePassword">
+          <image src="/images/icon/bangka.png"></image>
+          <view class="icon-desc">修改密码</view>
+        </view> -->
+        <!-- <view class="icon" bindtap="showTip">
+          <image src="/images/icon/authentication.png"></image>
+          <view class="icon-desc">认证记录</view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</view> 

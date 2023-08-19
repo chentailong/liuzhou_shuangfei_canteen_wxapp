@@ -1,0 +1,53 @@
+<view class='container'>
+  <!--input列表 -->
+  <view class='input-box'>
+    <view class="section">
+      <text>楼层科室</text>
+      <input placeholder='请选择楼层科室' disabled bindtap="showFloatView"
+        value="{{floorName}} - {{departmentName}}"></input>
+    </view>
+    <view class="section hao">
+      <text>床 号</text>
+      <input placeholder='请输入床号' type='text' value="{{bedNum}}" bindinput="onBedNumInput"></input>
+    </view>
+    <view class="section">
+      <text>收 货 人</text>
+      <input placeholder='姓名' type='text' maxlength='15' value="{{receiver}}" bindinput="onReceiverInput"></input>
+    </view>
+    <view class="section">
+      <text>手机号码</text>
+      <input placeholder='11位手机号码' type='number' maxlength='11' value="{{mobile}}" bindinput="onMobileInput"></input>
+    </view>
+  </view>
+  <!-- end input列表 -->
+  <!-- 功能按钮 -->
+  <view class='btn-box'>
+    <view class='keep btn' bindtap='onSaveAddr'>
+      <text>保存地址</text>
+    </view>
+    <view class='clear btn'  bindtap="onDeleteAddr"  wx:if="{{userAddrId!=0}}">
+      <text>删除收货地址</text>
+    </view>
+  </view>
+  <!-- end 功能按钮 -->
+</view>
+<!-- 地址选择 -->
+<view class="address" wx:if="{{floor}}">
+  <view class="address-bg" bindtap="hiddenFloatView"></view>
+  <view class="address-list">
+    <view class="address-comfirm">
+      <text bindtap="hiddenFloatView">确定</text>
+    </view>
+    <picker-view mode="multiSelector" value="{{addrList}}" bindchange="bindChange">
+      <picker-view-column>
+        <view class="address-item" wx:for="{{floorList}}" wx:key="floorList">{{item.floorName}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="address-item" wx:for="{{floorItems}}" wx:key="floorItems">{{item.department}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="address-item" wx:for="{{bedInfos}}" wx:key="bedInfos">{{item.bed}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

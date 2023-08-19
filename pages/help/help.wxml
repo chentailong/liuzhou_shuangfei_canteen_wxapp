@@ -1,0 +1,10 @@
+<view class="help">
+  <block wx:for='{{NewList}}' wx:key='index'>
+    <view class="list" bindtap="GoBrief">
+      <view class="content">
+        <view class="title">{{item.neinNewsname}}</view>
+        <view class="date">{{item.neinUpdatedate}}</view>
+      </view>
+    </view>
+  </block>
+</view>

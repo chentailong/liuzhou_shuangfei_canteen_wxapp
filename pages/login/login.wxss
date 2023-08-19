@@ -1,0 +1,190 @@
+page {
+  background: url('https://hbimg.huabanimg.com/d60b6d0d5a682f77bd4c64577c3dd4f3105fad03127dbc-GlpHq3_fw658/format/webp');
+  background-size: cover;
+}
+
+
+.container {
+  margin-top: 200rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin: 20px auto;
+  width: 80px;
+  height: 80px;
+}
+
+.header-top {
+  margin: 0rpx auto;
+  color: #ff961e;
+  margin-top: 100rpx;
+  font-size: 40rpx;
+}
+
+.header-bottom {
+  margin: 0 auto;
+  color: #ff961e;
+  margin-bottom: 40rpx;
+  font-size: 40rpx;
+}
+
+.login-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-img image {
+  width: 100%;
+  height: 250rpx;
+}
+
+.login-info {
+  margin-top: 20rpx;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  border-radius: 40rpx 40rpx 0 0;
+  padding: 0 95rpx;
+}
+
+.logo {
+  position: absolute;
+  top: -90rpx;
+  left: 50%;
+  margin-left: -90rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 20rpx #ff961e;
+}
+
+button::after {
+  border: none;
+}
+
+.btn {
+  margin: 0;
+  flex: 1;
+  font-size: 28rpx;
+  padding: 15rpx 0;
+  line-height: normal;
+  color: #ff565f;
+  border: 1rpx solid #ff565f;
+}
+
+.item-prompt {
+  margin: 20rpx 90rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  color: #fff;
+  width: 57%;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border-color: #fb6600;
+  background: #fb6600;
+}
+
+.user-name {
+  color: rgb(128, 128, 128);
+  font-size: 28rpx;
+  margin: auto;
+  padding-left: 35rpx;
+  line-height: 60rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  border-radius: 50%;
+  /* 圆角 */
+  width: 40rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 40rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 30rpx;
+  /* 对勾大小 30rpx */
+  color: #fff;
+  /* 对勾颜色 白色 */
+  background: #ff565f;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.item-prompt view {
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.item-prompt view text {
+  color: #fff;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.form-item-icon {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 30rpx;
+}
+
+.form-item-inp {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 20rpx;
+  /* border-bottom: 1rpx solid #e5e5e5; */
+  color: #fff;
+  font-size: 60rpx;
+}
+
+.pd0 {
+  padding: 0 20rpx;
+}
+
+.form-item-inp input {
+  flex: 1;
+  padding: 30rpx 0;
+}
+
+.form-item-inp-icon {
+  width: 35rpx;
+  height: 35rpx;
+  transform: rotate(90deg);
+}
+
+.form-item-inp-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.form-item-inp-picker text {
+  flex: 1;
+}
+
+.btn-login {
+  margin: 20rpx 120rpx;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  line-height: normal;
+  background-color: #fff;
+  color: #fff;
+  border: 1rpx solid transparent;
+}
+
+.btn-bg {
+  background-color: #91C8E4;
+}

@@ -1,0 +1,56 @@
+<view class="personal">
+  <!-- <view class="header">
+    <view class="arrowhead"></view>
+    <view class="desc">个人资料</view>
+  </view> -->
+  <view class="img">
+    <image src="{{userInfo.userAvatar}}"></image>
+  </view>
+  <!-- 个人信息 -->
+  <view class="content">
+    <view class="adrrs" wx:if="{{userInfo.userType==1}}">
+      <view class="adr">姓名</view>
+      <view class="arrowhead3">{{userInfo.userName}}</view>
+    </view>
+    <view class="adrrs" wx:if="{{userInfo.userType==1}}">
+      <view class="adr">员工号</view>
+      <view class="arrowhead3">{{userInfo.officerNumber}}</view>
+    </view>
+    <view class="adrrs">
+      <view class="adr">手机号码</view>
+      <view class="arrowhead3">{{userInfo.userPhone}}</view>
+    </view>
+    <view class="adrrs">
+      <view class="adr">昵称</view>
+      <view class="arrowhead3">{{userInfo.userNickName}}</view>
+    </view>
+    <!-- 修改姓名 -->
+    <view class="adrrs">
+      <view class="adr">姓名</view>
+      <view class="arrowhead3">
+        <input class="input-message" bindinput="bindReplaceInput" placeholder='请输入您的姓名' type='text' maxlength='15' value="{{userInfo.userName}}" />
+      </view>
+    </view>
+    <!-- 修改性别 -->
+    <view class="adrrs">
+      <view class="adr">性别</view>
+      <view class="arrowhead3">
+        <picker mode="selector" range="{{options}}" bindchange="handlePickerChange">
+          <view class="picker">{{userInfo.userSex}}</view>
+        </picker>
+      </view>
+    </view>
+    <!-- 修改生日 -->
+    <view class="adrrs">
+      <view class="adr">生日</view>
+      <view class="arrowhead3">
+        <picker mode="date" value="{{userInfo.userBirthday}}" start="1949-01-01" bindchange="bindDateChange">
+          <view class="picker">{{userInfo.userBirthday}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="container">
+      <button class="submit-button" bindtap="handleSubmit">修改</button>
+    </view>
+  </view>
+</view>

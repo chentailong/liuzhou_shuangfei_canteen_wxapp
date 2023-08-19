@@ -1,0 +1,197 @@
+<view class="container">
+  <!-- 商品详情 -->
+  <view class='prod-item'>
+
+    <view class="prod-title">
+      <image class="prod-title-img" src="{{orderEntry == 1?'/images/icon/canteen.png':'/images/icon/shop.png'}}">
+      </image>
+      <text>{{frompage}}</text>
+    </view>
+    <block wx:for="{{orderItems}}" wx:key='orderItems'>
+      <view class="content-bottom" wx:if="{{showshitang}}">
+        <text class="content-date">送餐时间：{{item.appointmentTime}}</text>
+        <text class="content-desc">
+          用餐时段：{{(item.productType=="0")?"早餐":((item.productType=="1")?"午餐":"晚餐")}}
+        </text>
+
+      </view>
+      <view class="content-bottom" wx:if="{{shopping}}">
+        <text class="content-date">送餐时间：{{item.appointmentTime}}</text>
+        <text class="content-desc">
+          用餐时段：{{(item.productType=="0")?"早餐":((item.productType=="1")?"午餐":"晚餐")}}
+        </text>
+      </view>
+      <view class='item-cont' bindtap='toOrderDetailPage' data-ordernum="{{item.primaryOrderNo}}">
+        <view class='prod-pic'>
+          <image src='{{item.pic}}&x-oss-process=image/resize,h_200,w_200,m_lfit'></image>
+          <!-- <image src="{{item.pic}}"></image> -->
+        </view>
+        <view class='prod-info'>
+          <view class='prodname'>
+            {{item.prodName}}
+          </view>
+          <!-- <view class='prod-info-cont'>{{item.skuName}}</view> -->
+          <view class='price-nums'>
+            <text class='prodprice'><text class='symbol'>￥</text>
+              <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text>
+              <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text></text>
+            <text class="prodcount">x{{item.prodCount}}</text>
+          </view>
+        </view>
+
+      </view>
+
+    </block>
+  </view>
+  <!-- 支付方式 -->
+  <radio-group bindchange="getDiningType" class="pay-list">
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <image src="/images/icon/pay1.png"></image>
+        <text>微信支付</text>
+      </view>
+      <radio value="1" />
+    </label>
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <image src="/images/icon/pay0.png"></image>
+        <text>一卡通支付</text>
+      </view>
+      <radio value="2" checked="true" />
+    </label>
+  </radio-group>
+
+  <!-- 就餐地点 -->
+  <!-- <radio-group bindchange="getDiningType" wx:if="{{showshitang}}" class="pay-list" >
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <text>食堂用餐</text>
+      </view>
+      <radio value="1" checked="true" />
+    </label>
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <text>送到病房</text>
+      </view>
+      <radio value="0" />
+    </label>
+  </radio-group> -->
+
+  <!-- <radio-group wx:if="{{shopping}}" bindchange="getDiningType" class="pay-list">
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <text>超市自提</text>
+      </view>
+      <radio value="1" checked="true" />
+    </label>
+    <label class="pay-item">
+      <view class="pay-item-con">
+        <text>配送</text>
+      </view>
+      <radio value="0" />
+    </label>
+  </radio-group> -->
+  <!-- <view class="pay-list">
+    <view class="pay-item">
+      <text>包装费</text>
+      <view class="pay-item-price">
+        <text class='symbol'>￥</text>
+        <text class='big-num'>{{wxs.parsePrice(packingBoxFee)[0]}}</text>
+        <text class='small-num'>.{{wxs.parsePrice(packingBoxFee)[1]}}</text>
+      </view>
+    </view>
+    <view class="pay-item" wx:if="{{showshitang}}">
+      <text>配送费</text>
+      <view class="pay-item-price">
+        <text class='symbol'>￥</text>
+        <text class='big-num'>{{urgent}}</text>
+        <text class='small-num'>.00</text>
+      </view>
+    </view>
+  </view> -->
+  <!-- 收货地址 -->
+  <view class="submit-order" wx:if="{{showUserAddr}}">
+    <view class='delivery-addr ' bindtap='toAddrListPage'>
+      <view class='addr-bg ' wx:if="{{!userAddr}}">
+        <view class='add-addr'>
+          <view class='plus-sign-img'>
+            <image src='/images/icon/plus-sign.png'></image>
+          </view>
+          <text>新增收货地址</text>
+        </view>
+        <view class='arrow empty'></view>
+      </view>
+      <view class='addr-bg whole' wx:if="{{userAddr}}">
+        <view class='addr-icon'>
+          <image src='/images/icon/addr.png'></image>
+        </view>
+        <view class='user-info'>
+          <text class='item'>{{userAddr.receiver}}</text>
+          <text class='item'>{{userAddr.mobile}}</text>
+        </view>
+        <view class='addr'>{{userAddr.floorName}} - {{userAddr.departmentName}} - {{userAddr.bedNum}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view>
+  <!-- 备注信息 -->
+  <view class="prod-inp">
+    <view class="prod-inp-label">订单备注</view>
+    <input class="prod-inp-con" type="text" value="{{remark}}" bindinput="getRemarks" placeholder="请输入订单备注" />
+  </view>
+</view>
+
+
+<!-- 底部栏 -->
+<view class='submit-order-footer'>
+  <view class='sub-order'>
+    <view class='item-txt'>
+      合计：
+      <view class='price'>
+        <text class='symbol'>￥</text>
+        <text class='big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
+        <text class='small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+      </view>
+    </view>
+  </view>
+  <view>{{item.payType}}</view>
+  <view class='footer-box' bindtap='GoSettlement'>
+    去结算
+  </view>
+</view>
+
+
+<!-- 欢迎使用一卡通支付 -->
+<view class="popup" wx:if="{{model}}">
+  <view class="price-detail-model1" bindtap="GoPopup"></view>
+  <view class="price-detail1">
+    <view class="price-detail-title1">
+      <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="GoPopup"></image>
+      <text class="price-detail-title-con1">欢迎使用一卡通支付</text>
+    </view>
+
+    <view class="page-section">
+      <view class='weui-cells__price'>
+        <view class='weui-cells-price'>
+          <text class='weui-cells-symbol'>合计：￥</text>
+          <text class='weui-cells-big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
+          <text class='weui-cells-small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+        </view>
+      </view>
+      <view class="weui-cells__title">请输入一卡通密码</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" password placeholder='请输入一卡通密码' type='text' bindinput="onReceiverInput"
+            value="{{userPassword}}"></input>
+        </view>
+      </view>
+      <view class="cozy">温馨提示：使用一卡通支付密码与员工认证密码保持一致</view>
+    </view>
+    <button class="hover-class" bindtap="submitOrder" data-id="{{item.orderId}}" type="primary" size="90%">确定</button>
+  </view>
+</view>
+
+
+
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

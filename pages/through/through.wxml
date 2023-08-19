@@ -1,0 +1,53 @@
+<!--pages/pay-result/pay-result.wxml-->
+<view class='container'>
+  <view wx:if="{{sts == 0}}">
+    <view class="pay-sts fail">支付失败</view>
+    <view class='tips'>请在
+      <text class="warn">30分钟</text>内完成付款</view>
+    <view class='tips'>否则订单会被系统取消</view>
+    <view class="btns">
+      <text class='button checkorder' catchtap="toOrderList">查看订单</text>
+      <text class='button payagain' bindtap='GoPopup'>重新支付</text>
+    </view>
+  </view>
+  <view wx:if="{{sts == 1}}">
+    <view class="pay-sts succ">支付成功</view>
+    <view class='tips'>感谢您的购买</view>
+    <view class="btns">
+      <text class='button checkorder' bindtap='toOrderList'>查看订单</text>
+      <text class='button shopcontinue' bindtap='toIndex'>继续购物</text>
+    </view>
+  </view>
+</view>
+
+<!-- 欢迎使用一卡通支付 -->
+<view class="popup" wx:if="{{model}}">
+  <view class="price-detail-model1" bindtap="GoPopup"></view>
+  <view class="price-detail1">
+    <view class="price-detail-title1">
+      <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="GoPopup"></image>
+      <text class="price-detail-title-con1">欢迎使用一卡通支付</text>
+    </view>
+
+    <view class="page-section">
+      <view class='weui-cells__price'>
+        <view class='weui-cells-price'>
+          <text class='weui-cells-symbol'>合计：￥</text>
+          <text class='weui-cells-big-num'>{{actualTotal}}</text>
+          <!-- <text class='weui-cells-small-num'>.{{actualTotal}}</text> -->
+        </view>
+      </view>
+      <view class="weui-cells__title">请输入一卡通密码</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" password placeholder='请输入一卡通密码' type='text' bindinput="onReceiverInput"
+            value="{{userPassword}}"></input>
+        </view>
+      </view>
+      <view class="cozy">温馨提示：使用一卡通支付密码与员工认证密码保持一致</view>
+    </view>
+    <button class="hover-class" bindtap="calWeixinPay"  type="primary" size="90%">确定</button>
+  </view>
+</view>
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

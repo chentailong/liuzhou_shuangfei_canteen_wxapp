@@ -1,0 +1,27 @@
+<view class="recharge">
+  <view class="recharge-content">
+    <view class="title">
+      <view class="username">用户名</view>
+      <view class="username">充值时间</view>
+      <view class="username">金额</view>
+       <view class="username">金额信息</view>
+    </view>
+    <scroll-view class="scroll-view" scroll-y wx:if="{{RechargeItem.length>0}}">
+      <block wx:for="{{RechargeItem}}" wx:key="{{RechargeItem}}">
+        <view class="list">
+          <view class="list-desc">{{item.loopUserName}}</view>
+          <view class="list-desc">{{item.loopCreatedate}}</view>
+          <view class="list-desc list-price">￥{{item.loopUserAmount}}</view>
+          <view class="list-desc list-price">￥{{item.loopUserRemark}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <!-- 暂无更多 -->
+    <view class="order-no" wx:else>
+      <view class="list-img">
+        <image src="/images/icon/no-icon.png" mode="widthFix"></image>
+      </view>
+      <view class="noitem">暂无充值记录</view>
+    </view>
+  </view>
+</view>

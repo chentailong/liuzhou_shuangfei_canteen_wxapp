@@ -1,0 +1,188 @@
+<view class='caregory'>
+  <view class="line-top">
+    <image class="line-bg" src="/images/icon/line-bg.png"></image>
+    <view class="line-content">
+      <image class="line-img" src="{{categoryType === 1?'/images/icon/canteen.png':'/images/icon/shop.png'}}"></image>
+      <view class="line-text">
+        <text class="line-text-big">便民超市</text>
+        <text>营业时间：8:00-22:00</text>
+        <!-- <text wx:if="{{categoryType == 1}}">配送时间：{{deliveryTime}}</text> -->
+      </view>
+    </view>
+  </view>
+  <view class="time" wx:if="{{categoryType === 1}}">
+    <picker class="time-item" mode="date" start="{{startDate}}" end="{{endDate}}" bindchange="getDate">
+      <view>
+        <text>{{date}}</text>
+        <image src="/images/icon/right-icon.png"></image>
+      </view>
+    </picker>
+    <text class="time-line"></text>
+    <picker class="time-item" range="{{timeList}}" bindchange="getTime">
+      <view>
+        <text>{{timeList[timeIndex]}}</text>
+        <image src="/images/icon/right-icon.png"></image>
+      </view>
+    </picker>
+  </view>
+  <view class="main">
+    <!-- 左侧菜单start -->
+    <scroll-view scroll-y="true" class='leftmenu' scroll-top="{{ HZL_leftToTop }}" scroll-with-animation="true">
+      <block wx:for='{{categoryList}}' wx:key='categoryList'>
+        <view data-id="{{item.toid}}" class='menu-item {{HZL_currentLeftSelect==item.toid ? "active":""}} '
+          data-index="{{index}}" data-id="{{item.toid}}" bindtap='onMenuTab'>
+          {{item.categoryName}}
+        </view>
+      </block>
+    </scroll-view>
+    <!-- 右侧内容start -->
+    <scroll-view scroll-y="true" class='rightcontent' bindscroll="right" scroll-with-animation="true"
+      scroll-into-view="{{toView}}">
+      <view class='cont-item' wx:for="{{ categoryList }}" wx:for-index="parentIndex" wx:key="categoryList"
+        id="{{ item.toid }}">
+        <view class="cont-item-title">{{ item.categoryName }}</view>
+        <block wx:for='{{item.products}}' wx:key='products' wx:for-item="itemChild" wx:for-index="indexChild">
+          <view class='show-item' bindtap="showDetail" data-src="{{itemChild.picture}}&x-oss-process=image/resize,h_300,w_300,m_lfit">
+            <view class='more-prod-pic'>
+              <image src='{{itemChild.picture}}&x-oss-process=image/resize,h_100,w_100,m_lfit' class='more-pic'
+                mode='widthFix'></image>
+            </view>
+            <view class='prod-text-right'>
+              <view class='prod-text more' bindtap="showDetail" data-id="{{itemChild.productId}}">{{itemChild.productName}}</view>
+              <view class='prod-pro' wx:if="{{item.productBrief}}" bindtap="showDetail" data-id="{{itemChild.productId}}">{{itemChild.productBrief}}</view>
+              <view class='prod-pro' bindtap="showDetail" data-id="{{itemChild.productId}}">剩余：{{itemChild.totalStocks}} 份</view>
+              <view class="prod-price-num">
+                <view class='prod-price more'>
+                  <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(itemChild.price)[0]}}</text><text
+                    class='small-num'>.{{wxs.parsePrice(itemChild.price)[1]}}</text>
+                </view>
+                <view class="prod-num">
+                  <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" catchtap="reduceNum"
+                    data-id="{{itemChild.productId}}" data-price="{{wxs.parsePrice(itemChild.price)[0]}}"
+                    data-num="{{itemChild.selectProductNums}}" data-index="{{parentIndex}}"
+                    data-cindex="{{indexChild}}">-</text>
+                  <text class="order-item-content-num-con">{{itemChild.selectProductNums}}</text>
+                  <text class="order-item-content-num-btn" catchtap="addNum" data-id="{{itemChild.productId}}"
+                    data-num="{{itemChild.selectProductNums}}" data-index="{{parentIndex}}"
+                    data-cindex="{{indexChild}}">+</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view style="height:20rpx;" wx:if="{{parentIndex == listCode}}"></view>
+      </view>
+      <!-- </block> -->
+    </scroll-view>
+    <!-- 右侧内容end -->
+  </view>
+  <!-- 下单按钮 -->
+  <view class="place-Order">
+    <view class="place-Order-con" bindtap="isModel">
+      <view class="place-sh">
+        <image src="/images/icon/car-new.png"></image>
+        <text wx:if="{{count>0}}">{{count}}</text>
+      </view>
+      <view class="place-Order-price">
+        <view class="place-Order-price-con">
+          <view class="place-total">合计：</view>
+          <view class='place-price'>
+            <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(total)[0]}}</text><text
+              class='small-num'>.{{wxs.parsePrice(total)[1]}}</text>
+          </view>
+        </view>
+        <view class="place-Order-price-pro" wx:if="{{freeDeliveryFee>0}}">满
+          <text>￥{{wxs.parsePrice(deliveryFee)[0]}}.{{wxs.parsePrice(deliveryFee)[1]}}</text> 元免费配送，还差
+          <text>￥{{wxs.parsePrice(freeDeliveryFee)[0]}}.{{wxs.parsePrice(freeDeliveryFee)[1]}}</text>
+          元</view>
+        <view class="place-Order-price-pro" wx:else>免费配送</view>
+      </view>
+    </view>
+    <view class="place-confirm" bindtap="GoPopup">确认下单</view>
+  </view>
+</view>
+
+<!-- 购物车列表 -->
+<view class="price-detail-box" wx:if="{{modelShow}}">
+  <view class="price-detail-model" bindtap="isModel"></view>
+  <view class="price-detail">
+    <view class="price-detail-title">
+      <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="isModel"></image>
+      <text class="price-detail-title-con">购物车列表</text>
+      <text class="price-detail-title-pro" bindtap="emptyUserCart">清空购物车</text>
+    </view>
+    <!-- 具体列表 -->
+    <scroll-view class="price-detail-list" scroll-y>
+      <view class="price-detail-item" wx:for="{{shopCartItemDiscounts[0].shopCartItems}}"
+        wx:key="shopCartItemDiscounts">
+        <text class="price-detail-item-label">{{item.prodName}}</text>
+        <view class="price-detail-item-con">
+          <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text><text
+            class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text>
+        </view>
+        <view class="prod-num">
+          <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" bindtap="reduceCarNum"
+            data-proid="{{item.productId}}" data-proskuid="{{item.productSkuId}}">-</text>
+          <text class="order-item-content-num-con">{{item.prodCount}}</text>
+          <text class="order-item-content-num-btn" bindtap="addCarNum" data-proid="{{item.productId}}"
+            data-proskuid="{{item.productSkuId}}">+</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+
+<!-- 选择就餐方式 -->
+<view class="popup" wx:if="{{model}}">
+  <view class="price-detail-model1" bindtap="GoPopup"></view>
+  <view class="price-detail1">
+    <view class="price-detail-title1">
+      <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="GoPopup"></image>
+      <text class="price-detail-title-con1">超市自提</text>
+    </view>
+    <radio-group bindchange="getDiningType" class="pay-list">
+      <label class="pay-item">
+        <view class="pay-item-con">
+          <text>超市自提</text>
+        </view>
+        <radio value="1" checked="true" />
+      </label>
+      <label class="pay-item" data-info="appointmentTime">
+        <view class="pay-item-con">
+          <text>免费配送</text>
+        </view>
+        <view class="free">时间：{{noonfreedownloadStartTime}} - {{noonfreedownloadEenTime}}
+          {{nightfreedownloadstarttime}}-{{nightfreedownloadendtime}}</view>
+        <radio value="0" />
+      </label>
+      <label class="pay-item">
+        <view class="pay-item-con">
+          <text>加急配送</text>
+        </view>
+        <view class="free">需加<text class="price-num">{{wxs.parsePrice(urgentcost)[0]}}</text>元配送费</view>
+        <radio value="2" />
+      </label>
+    </radio-group>
+    <button class="hover-class" bindtap="GoOrder" type="primary" size="90%">确定</button>
+  </view>
+</view>
+
+
+<!-- 商品详情 -->
+<view class="room-detail-box" hidden="{{detailFlag}}">
+  <view class="room-detail">
+    <view class="">
+      <swiper class="room-detail-swiper" indicator-dots>
+        <swiper-item>
+          <image src="{{imgContent}}" class='room-detail-swiper-img' mode='widthFix'></image>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <!-- 关闭按钮 -->
+  <image bindtap="closeDetail" class="room-detail-colse" src="/images/icon/close.png" mode="widthFix"></image>
+</view>
+
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

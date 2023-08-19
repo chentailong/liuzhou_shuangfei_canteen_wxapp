@@ -1,0 +1,112 @@
+page {
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.user {
+  width: 100%;
+  height: 150px;
+  background: "#fb6600";
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.user-bg {
+  display: flex;
+  width: 90%;
+  height: 135px;
+  margin-top: 60rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.user-title {
+  letter-spacing: 2px;
+}
+
+.user-title,
+.header-name {
+  letter-spacing: 2px;
+  color: #333;
+}
+
+.user-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-top: 40rpx;
+  margin-left: 60rpx;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-name {
+  margin-top: 25rpx;
+}
+
+.user-btn {
+  width: 90%;
+  background: #fff;
+  margin: 10px auto;
+  color: #333;
+  padding: 26rpx 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 10rpx 10rpx;
+  text-indent: 20rpx;
+  font-size: 26rpx;
+}
+
+
+.user-content{
+  background: #fff;
+  width: 90%;
+  margin: 51rpx auto;
+  border-radius: 10rpx;
+}
+
+.user-price-num {
+  color: #fb6600;
+  font-weight: 700;
+  font-size: 42rpx;
+}
+/* 基本信息 */
+.content-title {
+  color: #3dc5b7;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #ededed;
+}
+
+.content-title::before {
+  width: 10rpx;
+  height: 20rpx;
+  background: #3dc5b7;
+  content: '';
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.icons{
+  display: flex;
+  justify-content: space-between;
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list .icon{
+  text-align: center;
+  width: 33.33%;
+  margin-bottom: 15rpx;
+  margin-top: 30rpx;
+}
+.list .icon image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.icon-desc{
+  font-size: 26rpx;
+  margin: 17rpx 0;
+}

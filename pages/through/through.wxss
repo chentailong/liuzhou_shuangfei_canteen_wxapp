@@ -1,0 +1,135 @@
+/* pages/pay-result/pay-result.wxss */
+
+.pay-sts {
+  font-size: 40rpx;
+  margin-top: 100rpx;
+  padding: 30rpx 0;
+  text-align: center;
+}
+
+.pay-sts.fail {
+  color: #f43530;
+}
+
+.pay-sts.succ {
+  color: #19be6b;
+}
+
+.btns {
+  margin-top: 50rpx;
+  text-align: center;
+}
+
+.tips {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+}
+
+.tips .warn {
+  color: #f43530;
+}
+
+.btns .button {
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  background: #fff;
+  color: #333;
+  padding: 20rpx 35rpx;
+  width: 300rpx;
+  margin: 0 20rpx;
+  text-align: center;
+}
+
+.btns .button.checkorder {
+  background: #19be6b;
+  color: #fff;
+  margin-bottom: 20rpx;
+  border: 2rpx solid #19be6b;
+}
+
+.btns .button.payagain {
+  background: #fff;
+  border: 2rpx solid #f90;
+  color: #f90;
+}
+
+.btns .button.shopcontinue {
+  background: #fff;
+  border: 2rpx solid #19be6b;
+  color: #19be6b;
+}
+
+
+
+/* 对话框 */
+.popup{
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-detail-model1{
+  height: 350rpx;
+  background: rgba(0, 0, 0, .4);
+}
+.price-detail1{
+  flex: 1;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-detail-title1 image{
+  width: 30rpx;
+  height: 30rpx;
+  padding: 40rpx;
+}
+
+.price-detail-title1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 30rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.page-section{
+  width: 90%;
+  margin: 30rpx auto;
+}
+.weui-cells__title{
+  margin-bottom: 22rpx;
+  font-size: 24rpx;
+}
+.weui-cells{
+  border: 1rpx solid #cccc;
+  padding: 20rpx 0 20rpx;
+  font-size: 24rpx;
+  padding-left: 20rpx;
+}
+
+.cozy{
+  color: #fb6600;
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+/* 按钮 */
+.hover-class{
+  width: 90%;
+  background: #fb6600 !important;
+  margin-top: 50rpx;
+}
+.weui-cells-price{
+  text-align: center;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: red;
+  padding-bottom: 40rpx;
+}

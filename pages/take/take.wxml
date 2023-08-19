@@ -1,0 +1,80 @@
+<view class="take">
+  <!-- 头部内容 -->
+  <view class="home-head">
+    <view class="head-left">
+      <image class="head-img" src="/images/icon/header.jpg"></image>
+    </view>
+    <view class="head-right">
+      <view class="head-title">百色市妇幼保健院食堂</view>
+      <view class="head-date">
+        <text>公告：</text>
+        <text class="head-zao">早餐点餐：</text>
+        <text class="head-zao-date">06:00-09:00</text>
+      </view>
+      <view class="head-date">
+        <text class="head-wu">午餐点餐：</text>
+        <text class="head-zao-date">11:00-14:00</text>
+      </view>
+      <view class="head-date">
+        <text class="head-wu">晚餐点餐：</text>
+        <text class="head-zao-date">17:00-23:30</text>
+      </view>
+    </view>
+  </view>
+  <!-- 分类开始 -->
+  <view class="main">
+    <!-- 左侧菜单start -->
+    <scroll-view scroll-y="true" class='leftmenu'>
+      <block wx:for='{{categoryList}}' wx:key='categoryList'>
+        <view class='menu-item {{selIndex==index?"active":""}} ' data-index="{{index}}" data-id="{{item.categoryId}}"
+          bindtap='onMenuTab'>
+          {{item.categoryName}}
+        </view>
+      </block>
+    </scroll-view>
+    <!-- 右侧内容start -->
+    <scroll-view scroll-y class='rightcontent'>
+      <view class='cont-item'>
+        <block wx:for='{{productList}}' wx:key='productList'>
+          <view class='show-item'>
+            <view class='more-prod-pic'>
+              <image src='{{item.picture}}' class='more-pic' mode='widthFix'></image>
+            </view>
+            <view class='prod-text-right'>
+              <view class='prod-text more'>{{item.productName}}</view>
+              <view class='prod-price more'>
+                <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text><text
+                  class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text>
+              </view>
+              <view class="prod-num">
+                <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" bindtap="reduceNum"
+                  data-id="{{item.productId}}" data-price="{{wxs.parsePrice(item.price)[0]}}"
+                  data-num="{{item.selectProductNums}}" data-index="{{index}}">-</text>
+                <text class="order-item-content-num-con">{{item.selectProductNums}}</text>
+                <text class="order-item-content-num-btn" bindtap="addNum" data-id="{{item.productId}}"
+                  data-num="{{item.selectProductNums}}" data-index="{{index}}">+</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- </block> -->
+    </scroll-view>
+    <!-- 右侧内容end -->
+  </view>
+  <!-- 下单按钮 -->
+  <view class="place-Order">
+    <view class="place-Order-con">
+      <view class="place-sh">数量</view>
+      <view class="place-num">{{count}}</view>
+      <view class="place-total">合计</view>
+      <text class='place-price'>￥{{total}}.00</text>
+    </view>
+
+    <view class="place-confirm" bindtap="GoOrder">
+      <text>确认下单</text>
+    </view>
+  </view>
+</view>
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

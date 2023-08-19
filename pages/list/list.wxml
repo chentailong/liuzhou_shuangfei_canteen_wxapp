@@ -1,0 +1,89 @@
+<view class="home">
+  <!-- 头部内容 -->
+  <image class="home-bg" src="{{topUrl}}"></image>
+  <!-- 选择就餐方式 -->
+  <view class="choice">
+    <!-- <view class="choice-title">选择您的就餐方式</view> -->
+    <view class="choice-icon">
+      <view class="choice-left" bindtap="GoCanteen" data-type="1">
+        <image class="choice-img" src="/images/icon/canteen.png"></image>
+        <view class="choice-desc">食堂点餐</view>
+      </view>
+      <view class="choice-right" bindtap="GoLine" data-type="0">
+        <image class="choice-img" src="/images/icon/shop.png"></image>
+        <view class="choice-desc">便民超市</view>
+      </view>
+      <view class="choice-right" bindtap="GoPastry" data-type="0">
+        <image class="choice-img" src="/images/icon/pastry.png"></image>
+        <view class="choice-desc">糕点选购</view>
+      </view>
+      <view class="choice-right" bindtap="GoBox" data-type="0">
+        <image class="choice-img" src="/images/icon/box.png"></image>
+        <view class="choice-desc">包厢预定</view>
+      </view>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <swiper autoplay indicator-color="{{indicatorColor}}" interval="5000" indicator-active-color="{{indicatorActiveColor}} " circular class='pic-swiper' indicator-dots>
+    <block wx:for='{{indexImgs}}' wx:key='indexImgs'>
+      <swiper-item class="banner-item">
+        <view class='img-box'>
+          <image src='{{item.scenImagePath}}&x-oss-process=image/resize,h_600,w_600,m_lfit' class='banner'></image>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 食堂信息 -->
+  <view class="content">
+    <view class="info-title">食堂信息</view>
+    <view class="adrrs">
+      <image src="/images/icon/address.png" />
+      <view class="adr">{{userInfo}}</view>
+      <view class="arrowhead"></view>
+    </view>
+    <view class="adrrs" bindtap="GoIpone">
+      <image src="/images/icon/user-ipone.png" />
+      <view class="adr">{{userNumber}}</view>
+      <view class="arrowhead"></view>
+    </view>
+  </view>
+    <view class="content">
+    <view class="info-title">超市信息</view>
+    <view class="adrrs">
+      <image src="/images/icon/address.png" />
+      <view class="adr">{{userInfo}}</view>
+      <view class="arrowhead"></view>
+    </view>
+    <view class="adrrs" bindtap="GoIpone">
+      <image src="/images/icon/user-ipone.png" />
+      <view class="adr">{{userNumber}}</view>
+      <view class="arrowhead"></view>
+    </view>
+  </view>
+    <view class="content">
+    <view class="info-title">糕点信息</view>
+    <view class="adrrs">
+      <image src="/images/icon/address.png" />
+      <view class="adr">{{userInfo}}</view>
+      <view class="arrowhead"></view>
+    </view>
+    <view class="adrrs" bindtap="GoIpone">
+      <image src="/images/icon/user-ipone.png" />
+      <view class="adr">{{userNumber}}</view>
+      <view class="arrowhead"></view>
+    </view>
+  </view>
+    <view class="content">
+    <view class="info-title">包厢信息</view>
+    <view class="adrrs">
+      <image src="/images/icon/address.png" />
+      <view class="adr">{{userInfo}}</view>
+      <view class="arrowhead"></view>
+    </view>
+    <view class="adrrs" bindtap="GoIpone">
+      <image src="/images/icon/user-ipone.png" />
+      <view class="adr">{{userNumber}}</view>
+      <view class="arrowhead"></view>
+    </view>
+  </view>
+</view>

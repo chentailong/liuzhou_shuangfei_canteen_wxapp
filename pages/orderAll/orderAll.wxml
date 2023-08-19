@@ -1,0 +1,24 @@
+<view class="home">
+  <!-- 选择查询你的订单 -->
+  <view class="choice">
+    <!-- <view class="choice-title">选择查询你的订单 </view> -->
+    <view class="choice-icon">
+      <view class="choice-left" bindtap="GoCanteen" data-type="1">
+        <image class="choice-img" src="/images/icon/canteen.png"></image>
+        <view class="choice-desc">食堂订单</view>
+      </view>
+      <view class="choice-right" bindtap="GoLine" data-type="0">
+        <image class="choice-img" src="/images/icon/shop.png"></image>
+        <view class="choice-desc">超市订单</view>
+      </view>
+      <view class="choice-right" bindtap="GoPastry" data-type="0">
+        <image class="choice-img" src="/images/icon/pastry.png"></image>
+        <view class="choice-desc">糕点订单</view>
+      </view>
+      <view class="choice-right" bindtap="GoBox" data-type="0">
+        <image class="choice-img" src="/images/icon/box.png"></image>
+        <view class="choice-desc">包厢订单</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="container">
+  <image class="header" src="/images/icon/lbg.png"></image>
+  <!-- <view class="header-top">为了更好给您服务</view>
+  <view class="header-bottom">请注册后点餐</view> -->
+  <view class="login-info">
+    <view class="form">
+      <!-- 获取手机号码 -->
+      <view class="form-item">
+        <view class="form-item-inp" wx:if="{{!phone}}">
+          <button class="btn" open-type="getPhoneNumber" bindgetphonenumber="getUserPhone">
+            获取手机号码
+          </button>
+        </view>
+        <view class="form-item-inp" wx:else>{{phone}}</view>
+      </view>
+    </view>
+  </view>
+ 
+  <button style="width: 69%;" class="btn-login {{!authorization?'btn-bg':''}}" open-type="getUserInfo" bindgetuserinfo="registration" disabled="{{authorization}}" lang="zh_CN">
+    微信用户注册
+  </button>
+
+ <view class="item-prompt">
+    <checkbox-group bindchange="agreement">
+      <checkbox value="cb" />
+    </checkbox-group>
+    <view>我已同意以下用户协议内容</view>
+  </view>
+
+</view>

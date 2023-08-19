@@ -1,0 +1,18 @@
+{
+  "name": "liuzhou_shuangfei_car_order_food_wxapp",
+  "version": "1.0.0",
+  "description": "双飞汽车配件点餐系统小程序端",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.1.160:3000/baise_hospital_order_food/baise_hospital_order_food_wxapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vant-weapp": "^0.5.28"
+  }
+}

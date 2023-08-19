@@ -1,0 +1,22 @@
+.list{
+  border-bottom: 1rpx solid #e5e5e5;
+  padding: 30rpx 20rpx;
+}
+.content{
+  margin: auto;
+  color: #333;
+}
+.title{
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.content .date{
+  font-size: 30rpx;
+}
+
+.content .date text{
+  margin-left: 20rpx;
+}

@@ -1,0 +1,85 @@
+.container {
+  padding: 4px;
+  background-color: #ffffff;
+}
+
+.swiper {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.company-profile {
+  font-style: oblique;
+  margin-left: 10px;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.intro {
+  margin-bottom: 20px;
+}
+
+.intro-image {
+  width: 100%;
+  height: 150px;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-image {
+  width: 150px;
+  height: 150px;
+}
+
+.choice {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-icon {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-title {
+  text-align: center;
+  color: #333;
+  letter-spacing: 1px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.choice-left,
+.choice-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 50rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+.choice-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 30rpx;
+  border-radius: 10rpx;
+}
+
+.choice-desc {
+  color: #666;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
