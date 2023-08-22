@@ -30,45 +30,41 @@
     <!-- 左侧菜单start -->
     <scroll-view scroll-y="true" class='leftmenu' scroll-top="{{ HZL_leftToTop }}" scroll-with-animation="true">
       <block wx:for='{{categoryList}}' wx:key='categoryList'>
-        <view data-id="{{item.toid}}" class='menu-item {{HZL_currentLeftSelect==item.toid ? "active":""}} '
-          data-index="{{index}}" data-id="{{item.toid}}" bindtap='onMenuTab'>
+        <view data-id="{{item.toid}}" class='menu-item {{HZL_currentLeftSelect==item.toid ? "active":""}} ' data-index="{{index}}" data-id="{{item.toid}}" bindtap='onMenuTab'>
           {{item.categoryName}}
         </view>
       </block>
     </scroll-view>
     <!-- 右侧内容start -->
-    <scroll-view scroll-y="true" class='rightcontent' bindscroll="right" scroll-with-animation="true"
-      scroll-into-view="{{toView}}">
-      <view class='cont-item' wx:for="{{ categoryList }}" wx:for-index="parentIndex" wx:key="categoryList"
-        id="{{ item.toid }}">
+    <scroll-view scroll-y="true" class='rightcontent' bindscroll="right" scroll-with-animation="true" scroll-into-view="{{toView}}">
+      <view class='cont-item' wx:for="{{ categoryList }}" wx:for-index="parentIndex" wx:key="categoryList" id="{{ item.toid }}">
         <view class="cont-item-title">{{ item.categoryName }}</view>
         <block wx:for='{{item.products}}' wx:key='products' wx:for-item="itemChild" wx:for-index="indexChild">
           <view class='show-item' bindtap="showDetail" data-src="{{itemChild.picturePath}}">
             <view class='more-prod-pic'>
-              <image src='{{itemChild.picturePath}}&x-oss-process=image/resize,w_100,m_lfit,h_100' class='more-pic'
-                mode='widthFix'></image>
+              <!-- <image src='{{itemChild.picturePath}}&x-oss-process=image/resize,w_100,m_lfit,h_100' class='more-pic'
+                mode='widthFix'></image> -->
+              <!-- <image src="{{itemChild.picturePath.replace('//', '/').replace('\\', '/')}}" class='more-pic' mode='widthFix'></image> -->
             </view>
             <view class='prod-text-right'>
-              <view class='prod-text more'>
-                {{itemChild.productName}}</view>
+              <view class='prod-text more'>{{itemChild.productName}}</view>
               <view class='prod-pro' wx:if="{{item.productBrief}}">{{itemChild.productBrief}}</view>
               <view class='prod-pro'>剩余：{{itemChild.totalStocks}}
                 份</view>
               <view class="prod-price-num">
                 <view class='prod-price more'>
-                  <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(itemChild.price)[0]}}</text><text
-                    class='small-num'>.{{wxs.parsePrice(itemChild.price)[1]}}</text>
+                  <text class='symbol'>￥</text>
+                  <text class='big-num'>{{wxs.parsePrice(itemChild.price)[0]}}</text>
+                  <text class='small-num'>.{{wxs.parsePrice(itemChild.price)[1]}}</text>
                 </view>
                 <view class="prod-num">
-                  <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" catchtap="reduceNum"
-                    data-id="{{itemChild.productId}}" data-productType="{{itemChild.productType}}"
-                    data-price="{{wxs.parsePrice(itemChild.price)[0]}}" data-num="{{itemChild.selectProductNums}}"
-                    data-index="{{parentIndex}}" data-cindex="{{indexChild}}"
-                    data-time="{{itemChild.appointmentTime}}" data-combofood="{{itemChild.comboFood}}">-</text>
+                  <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" catchtap="reduceNum" data-id="{{itemChild.productId}}" data-productType="{{itemChild.productType}}" data-price="{{wxs.parsePrice(itemChild.price)[0]}}" data-num="{{itemChild.selectProductNums}}" data-index="{{parentIndex}}" data-cindex="{{indexChild}}" data-time="{{itemChild.appointmentTime}}" data-combofood="{{itemChild.comboFood}}">
+                    -
+                  </text>
                   <text class="order-item-content-num-con">{{itemChild.selectProductNums}}</text>
-                  <text class="order-item-content-num-btn" catchtap="addNum" data-id="{{itemChild.productId}}"
-                    data-num="{{itemChild.selectProductNums}}" data-index="{{parentIndex}}" data-cindex="{{indexChild}}"
-                    data-productType="{{itemChild.productType}}" data-time="{{itemChild.appointmentTime}}" data-combofood="{{itemChild.comboFood}}">+</text>
+                  <text class="order-item-content-num-btn" catchtap="addNum" data-id="{{itemChild.productId}}" data-num="{{itemChild.selectProductNums}}" data-index="{{parentIndex}}" data-cindex="{{indexChild}}" data-productType="{{itemChild.productType}}" data-time="{{itemChild.appointmentTime}}" data-combofood="{{itemChild.comboFood}}">
+                    +
+                  </text>
                 </view>
               </view>
             </view>
@@ -90,8 +86,9 @@
         <view class="place-Order-price-con">
           <view class="place-total">合计：</view>
           <view class='place-price'>
-            <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(total)[0]}}</text><text
-              class='small-num'>.{{wxs.parsePrice(total)[1]}}</text>
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(total)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(total)[1]}}</text>
           </view>
         </view>
         <!-- <view class="place-Order-price-pro" wx:if="{{freeDeliveryFee>0}}">满
@@ -104,7 +101,6 @@
     <view class="place-confirm" bindtap="GoPopup">确认下单</view>
   </view>
 </view>
-
 <!-- 购物车列表 -->
 <view class="price-detail-box" wx:if="{{modelShow}}">
   <view class="price-detail-model" bindtap="isModel"></view>
@@ -116,23 +112,22 @@
     </view>
     <!-- 具体列表 -->
     <scroll-view class="price-detail-list" scroll-y>
-      <view class="price-detail-item" wx:for="{{shopCartItemDiscounts[0].shopCartItems}}"
-        wx:key="shopCartItemDiscounts">
+      <view class="price-detail-item" wx:for="{{shopCartItemDiscounts[0].shopCartItems}}" wx:key="shopCartItemDiscounts">
         <view class="content-item">
           <text class="price-detail-item-label">{{item.prodName}}</text>
           <view class="price-detail-item-con">
-            <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text><text
-              class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text>
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text>
           </view>
           <view class="prod-num">
-            <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" bindtap="reduceCarNum"
-              data-proid="{{item.productId}}" data-proskuid="{{item.productSkuId}}"
-              data-shoppCartId="{{item.shoppCartId}}" data-appointmentTime="{{item.appointmentTime}}"
-              data-productType="{{item.productType}}">-</text>
+            <text class="order-item-content-num-btn {{num<1?'coloraaa':''}}" bindtap="reduceCarNum" data-proid="{{item.productId}}" data-proskuid="{{item.productSkuId}}" data-shoppCartId="{{item.shoppCartId}}" data-appointmentTime="{{item.appointmentTime}}" data-productType="{{item.productType}}">
+              -
+            </text>
             <text class="order-item-content-num-con">{{item.prodCount}}</text>
-            <text class="order-item-content-num-btn" bindtap="addCarNum" data-proid="{{item.productId}}"
-              data-proskuid="{{item.productSkuId}}" data-shoppCartId="{{item.shoppCartId}}"
-              data-appointmentTime="{{item.appointmentTime}}" data-productType="{{item.productType}}">+</text>
+            <text class="order-item-content-num-btn" bindtap="addCarNum" data-proid="{{item.productId}}" data-proskuid="{{item.productSkuId}}" data-shoppCartId="{{item.shoppCartId}}" data-appointmentTime="{{item.appointmentTime}}" data-productType="{{item.productType}}">
+              +
+            </text>
           </view>
         </view>
         <view class="content-bottom">
@@ -145,8 +140,6 @@
     </scroll-view>
   </view>
 </view>
-
-
 <!-- 选择就餐方式 -->
 <view class="popup" wx:if="{{model}}">
   <view class="price-detail-model1" bindtap="GoPopup"></view>
@@ -191,5 +184,4 @@
   <!-- 关闭按钮 -->
   <image bindtap="closeDetail" class="room-detail-colse" src="/images/icon/close.png" mode="widthFix"></image>
 </view>
-
 <wxs module="wxs" src="../../wxs/number.wxs" />
