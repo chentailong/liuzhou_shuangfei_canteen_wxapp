@@ -75,7 +75,7 @@ Page({
       return false
     }
     this.setData({
-      categoryType: 1,
+      categoryType: 3,
     })
   },
 
@@ -89,8 +89,7 @@ Page({
       data: {
         categoryType: that.data.categoryType
       },
-      callBack: function (res) {
-        console.log(res)
+      callBack: function (res) { 
         that.setData({
           count: res.data.count,
           total: res.data.total,
@@ -430,13 +429,12 @@ Page({
         orderTime: that.data.currentTime, //日期时间
       },
       callBack: res => {
+        console.log(res);
         for (let i of res.data.categorys) {
-          for (let j of i.products) {
-            // j.selectProductNums = 0
+          for (let j of i.products) { 
           }
         }
-        if (res.errorCode == 200) {
-          console.log(res);
+        if (res.errorCode == 200) { 
           res.data.categorys.forEach((item, index) => {
             item.toid = 'id' + index
           });
@@ -447,14 +445,7 @@ Page({
             HZL_currentLeftSelect: res.data.categorys.length > 0 ? res.data.categorys[0].toid : '',
             toView: res.data.categorys.length > 0 ? res.data.categorys[0].toid : '',
             HZL_eachRightItemToTop: that.HZL_getEachRightItemToTop(res.data.categorys)
-          })
-          // if(res.data.orderingTime == 1){
-          //   wx.showModal({
-          //     title: '提示',
-          //     content: '当前已过了订餐时间',
-          //     showCancel: false,
-          //   })
-          // }
+          }) 
         } else {
           wx.showToast({
             title: res.message,

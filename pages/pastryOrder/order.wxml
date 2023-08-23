@@ -1,0 +1,158 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+  <!-- nav -->
+  <view class="models-nav service-nav">
+    <view class="models-item" bindtap="switchNav" data-index="0"><text class="{{index == 0?'active':''}}">待付款</text>
+    </view>
+    <view class="models-item" bindtap="switchNav" data-index="1"><text class="{{index == 1?'active':''}}">未取餐</text>
+    </view>
+    <view class="models-item" bindtap="switchNav" data-index="2"><text class="{{index == 2?'active':''}}">已取餐</text>
+    </view>
+    <view class="models-item" bindtap="switchNav" data-index="3"><text class="{{index == 3?'active':''}}">退餐</text>
+    </view>
+    <view class="models-item" bindtap="switchNav" data-index="4"><text class="{{index == 4?'active':''}}">退款/售后</text>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <scroll-view class="scroll-view" scroll-y wx:if="{{orderList.length>0}}" bindscrolltolower="getMore">
+    <view class="order-list">
+      <block wx:for="{{orderList}}" wx:key="orderList">
+        <view class="order-item">
+          <view class="order-item-addr">
+            <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==1}}">待付款</text>
+            <text class="order-item-pro-content color1dffa1" wx:if="{{item.orderStatus==2}}">未取餐</text>
+            <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==3}}">已取餐</text>
+            <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==4}}">退餐</text>
+            <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==5}}">退款</text>
+          </view>
+          <!-- 商品订单 -->
+          <view class="goods">
+            <view class="goods-list">
+              <view class='item-cont' wx:for="{{item.orderItems}}" wx:key="orderItems" wx:for-item="itemChild">
+                <view class='prod-pic'>
+                  <image src='{{itemChild.productPicture}}&x-oss-process=image/resize,h_200,w_200,m_lfit'></image>
+                </view>
+                <view class='prod-info'>
+                  <view class='prodname'>
+                    {{itemChild.productName}}
+                  </view>
+                  <view class='price-nums'>
+                    <text class='prodprice'><text class='symbol'>￥</text>
+                      <text class='big-num'>{{wxs.parsePrice(itemChild.productPrice)[0]}}</text>
+                      <text class='small-num'>.{{wxs.parsePrice(itemChild.productPrice)[1]}}</text></text>
+                    <text class="prodcount">x{{itemChild.productNums}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="content-bottom">
+              <text class="content-date">配送时间：{{currentTime}}</text>
+              <view class="content-desc" wx:if="{{item.orderFeed == 1 && item.orderStatus==1 || item.orderStatus==2}}">
+                <text>
+                  用餐时段：{{(item.productType=="0")?"早餐":((item.productType=="1")?"午餐":"晚餐")}}
+                </text>
+              </view>
+            </view>
+            <view class="goods-time">下单时间：{{item.createTime}}</view>
+            <view class="goods-time"></view>
+            <view class="order-num">订单号：{{item.orderId}}</view>
+            <!-- <view class="tips">温馨提示：下单后20分钟送达</view> -->
+          </view>
+          <!-- 合计 -->
+          <view class="order-item-total">
+            <view class="order-item-price">
+              合计：
+              <text class='big-num'>{{wxs.parsePrice(item.actualTotal)[0]}}</text>
+              <text class='small-num'>.{{wxs.parsePrice(item.actualTotal)[1]}}</text>
+              元
+            </view>
+            <view class="distribution" wx:if="{{item.urgentDelivery>0}}">加急配送费：<text
+                class="distribution-num">{{item.urgentDelivery}}</text>元</view>
+            <view class="distribution" wx:if="{{item.packingBoxCost>0}}">包装费:<text
+                class="distribution-num">{{item.packingBoxCost}}</text>元</view>
+
+          </view>
+          <view class="order-item-btn">
+            <text class="cancel" wx:if="{{item.orderStatus==1}}" bindtap="cancel" data-id="{{item.orderId}}">取消订单</text>
+            <text wx:if="{{item.orderStatus==1}}" class="pay" bindtap="GoPopup" data-id="{{item.orderId}}" data-actualtotal="{{item.actualTotal}}">立即支付</text>
+          </view>
+          <view class="order-item-btn">
+            <text class="cancel" wx:if="{{item.orderStatus==2}}" bindtap="refund" data-id="{{item.orderId}}">退款</text>
+          </view>
+          <view class="order-item-btn1" >
+            <text class="cancel1" style="color: #f60;" wx:if="{{item.orderStatus==5}}">
+              {{returnMoneyStatus}}
+            </text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <!-- 暂无更多 -->
+  <view class="order-no" wx:else>
+    <image src="/images/icon/no-icon.png" mode="widthFix"></image>
+    <text>暂无数据</text>
+  </view>
+
+
+
+  <!-- 选择就餐方式 -->
+  <view class="popup" wx:if="{{model}}">
+    <view class="price-detail-model1" bindtap="GoPopup"></view>
+    <view class="price-detail1">
+      <view class="price-detail-title1">
+        <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="GoPopup"></image>
+        <text class="price-detail-title-con1">请选择支付餐方式</text>
+      </view>
+      <radio-group bindchange="getDiningType" data-ordernum="payType" class="pay-list">
+        <label class="pay-item">
+          <view class="pay-item-con">
+            <text>微信支付</text>
+          </view>
+          <radio value="1" />
+        </label>
+        <label class="pay-item">
+          <view class="pay-item-con">
+            <text>一卡通支付</text>
+          </view>
+          <radio value="2" />
+        </label>
+      </radio-group>
+      <button class="hover-class" bindtap="jumpPayType" data-id="{{item.orderId}}" type="primary" size="90%">确定</button>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 商品详情 -->
+<view class="room-detail-box" hidden="{{detailFlag}}">
+  <view class="room-detail">
+    <view class="room-detail-con">
+      <view class="shop-detail-pro">欢迎使用一卡通支付</view>
+    </view>
+    <view class="page-section">
+      <view class='weui-cells__price'>
+        <view class='weui-cells-price'>
+          <text class='weui-cells-symbol'>合计：￥</text>
+          <text class='weui-cells-big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
+          <text class='weui-cells-small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+        </view>
+      </view>
+      <view class="weui-cells__title">请输入一卡通密码</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" password placeholder='请输入一卡通密码' type='text' bindinput="onReceiverInput"
+            value="{{userPassword}}"></input>
+        </view>
+      </view>
+      <view class="cozy">温馨提示：使用一卡通支付密码与员工认证密码保持一致</view>
+    </view>
+    <button class="hover-class" bindtap="calWeixinPay" data-id="{{item.orderId}}" type="primary" size="90%">确定</button>
+    <!-- <button class="hover-class" bindtap="submitOrder" data-id="{{item.orderId}}" type="primary" size="90%">确定</button> -->
+  </view>
+  <!-- 关闭按钮 -->
+  <image bindtap="closeDetail" class="room-detail-colse" src="/images/icon/close.png" mode="widthFix"></image>
+</view>
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

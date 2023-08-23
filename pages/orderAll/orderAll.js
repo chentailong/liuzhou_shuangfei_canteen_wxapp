@@ -15,45 +15,70 @@ Page({
     userInfo: '',
     sycoType: 4,
     userNumber: '',
-    topUrl: '/images/icon/index-top.png'
-
+    topUrl: '/images/icon/index-top.png',
+    isCanteen: false,
+    isShop: false,
+    isPastry: false,
+    isBox: false,
   },
 
-   // 点击前往食堂
-   GoCanteen() {
+
+  toggleCanteen() {
+    this.setData({
+      isCanteen: !this.data.isCanteen
+    });
+  },
+  toggleShop() {
+    this.setData({
+      isShop: !this.data.isShop
+    });
+  },
+  togglePastry() {
+    this.setData({
+      isPastry: !this.data.isPastry
+    });
+  },
+  toggleBox() {
+    this.setData({
+      isBox: !this.data.isBox
+    });
+  },
+
+  // 点击前往食堂
+  GoCanteen() {
     wx.navigateTo({
-      url: '/pages/order/order'
+      url: '/pages/canteenOrder/order'
     })
   },
 
   // 前往超市
   GoLine() {
     wx.navigateTo({
-      url: '/pages/supermarket/supermarket?currentTime=' + util.formatTime(new Date(this.data.currentTime))
+      url: '/pages/supermarKetOrder/order'
     })
   },
   // 前往糕点
   GoPastry() {
     wx.navigateTo({
-      url: '/pages/pastry/pastry?currentTime=' + util.formatTime(new Date(this.data.currentTime))
+      url: '/pages/pastryOrder/order'
     })
   },
 
   //前往包厢
   GoBox() {
     wx.navigateTo({
-      url: '/pages/box/box?currentTime=' + util.formatTime(new Date(this.data.currentTime))
+      url: '/pages/boxOrder/order'
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function () {
     this.getIndex()
   },
- 
- 
+
+
   getAllData() {
     this.getIndexImgs();
   },
@@ -73,8 +98,8 @@ Page({
     http.request(params);
   },
 
-   // 个人信息
-   getIndex() {
+  // 个人信息
+  getIndex() {
     var params = {
       url: "/weixin/systemConfig/getSystemConfig",
       method: "GET",
@@ -90,12 +115,12 @@ Page({
     };
     http.request(params);
   },
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
@@ -127,14 +152,14 @@ Page({
   onPullDownRefresh: function () {
     //模拟加载
     var ths = this;
-    setTimeout(function() {
-      ths.getAllData(); 
+    setTimeout(function () {
+      ths.getAllData();
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 100);
   },
 
   // 电话
-  GoIpone(){
+  GoIpone() {
     wx.makePhoneCall({
       phoneNumber: '0771-2359842'
     })

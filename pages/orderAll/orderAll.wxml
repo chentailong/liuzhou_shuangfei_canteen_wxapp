@@ -1,23 +1,61 @@
 <view class="home">
-  <!-- 选择查询你的订单 -->
   <view class="choice">
-    <!-- <view class="choice-title">选择查询你的订单 </view> -->
     <view class="choice-icon">
-      <view class="choice-left" bindtap="GoCanteen" data-type="1">
-        <image class="choice-img" src="/images/icon/canteen.png"></image>
-        <view class="choice-desc">食堂订单</view>
+      <view class="container">
+        <view class="header" bindtap="toggleCanteen">
+          <image class="choice-img" src="/images/icon/canteen.png"></image>
+          <text>食堂订单</text>
+        </view>
+        <view class="content" wx:if="{{isCanteen}}">
+          <view class="choice-left" bindtap="GoCanteen" data-type="1">
+            <view class="choice-desc">当前订单</view>
+          </view>
+          <view class="choice-left" bindtap="GoCanteen" data-type="1">
+            <view class="choice-desc">历史订单</view>
+          </view>
+        </view>
       </view>
-      <view class="choice-right" bindtap="GoLine" data-type="0">
-        <image class="choice-img" src="/images/icon/shop.png"></image>
-        <view class="choice-desc">超市订单</view>
+      <view class="container">
+        <view class="header" bindtap="toggleShop">
+          <image class="choice-img" src="/images/icon/shop.png"></image>
+          <text>超市订单</text>
+        </view>
+        <view class="content" wx:if="{{isShop}}">
+          <view class="choice-right" bindtap="GoLine" data-type="0">
+            <view class="choice-desc">当前订单</view>
+          </view>
+          <view class="choice-right" bindtap="GoLine" data-type="0">
+            <view class="choice-desc">历史订单</view>
+          </view>
+        </view>
       </view>
-      <view class="choice-right" bindtap="GoPastry" data-type="0">
-        <image class="choice-img" src="/images/icon/pastry.png"></image>
-        <view class="choice-desc">糕点订单</view>
+      <view class="container">
+        <view class="header" bindtap="togglePastry">
+          <image class="choice-img" src="/images/icon/pastry.png"></image>
+          <text>糕点订单</text>
+        </view>
+        <view class="content" wx:if="{{isPastry}}">
+          <view class="choice-right" bindtap="GoPastry" data-type="0">
+            <view class="choice-desc">当前订单</view>
+          </view>
+          <view class="choice-right" bindtap="GoPastry" data-type="0">
+            <view class="choice-desc">历史订单</view>
+          </view>
+        </view>
       </view>
-      <view class="choice-right" bindtap="GoBox" data-type="0">
-        <image class="choice-img" src="/images/icon/box.png"></image>
-        <view class="choice-desc">包厢订单</view>
+      <view class="container">
+        <view class="header" bindtap="toggleBox">
+          <image class="choice-img" src="/images/icon/pastry.png"></image>
+          <text>包厢订单</text>
+        </view>
+        <view class="content" wx:if="{{isBox}}">
+          <view class="choice-right" bindtap="GoBox" data-type="0">
+            <view class="choice-desc">当前订单</view>
+          </view>
+          <view class="choice-left" bindtap="GoBox" data-type="1">
+            <view class="choice-desc">历史订单</view>
+          </view>
+        </view>
       </view>
     </view>
   </view>

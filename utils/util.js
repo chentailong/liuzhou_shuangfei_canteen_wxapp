@@ -43,8 +43,7 @@ const DataTime = date => {
 
 // 判断当前早中晚
 const getTimeSlot = data => {
-  var time = parseInt(new Date().getHours()); //返回小时数
-  console.log(time)
+  var time = parseInt(new Date().getHours()); //返回小时数 
   let type
 　　if (10 <= time && time <= 12) {
   //  午餐

@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText":"在线点餐",
+  "navigationBarTitleText":"包厢预定",
   "navigationBarBackgroundColor": "#91C8E4",
   "navigationBarTextStyle": "white"
 }

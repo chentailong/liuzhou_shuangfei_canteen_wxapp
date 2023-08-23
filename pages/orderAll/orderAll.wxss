@@ -2,8 +2,6 @@ page {
   background: #f2f2f2;
 }
 
-
-
 /* 选择 */
 .choice {
   background: #fff;
@@ -31,7 +29,7 @@ page {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20rpx 50rpx;
+
   border-bottom: 1rpx solid #f1f1f1;
 }
 
@@ -43,8 +41,22 @@ page {
 }
 
 .choice-desc {
-  color: #666;
   font-size: 32rpx;
   margin-top: 10rpx;
+  margin-left: 80rpx;
   margin-bottom: 20rpx;
+}
+
+.container {
+  padding: 20px;
+  border: 1px solid #f1f1f1;
+}
+
+.header {
+  display: flex;
+  cursor: pointer;
+}
+
+.content {
+  margin-top: 10px;
 }
