@@ -55,6 +55,10 @@ Page({
       this.setData({
         showshitang: false
       })
+    } else if (options.frompage == '糕点选购') {
+      this.setData({
+        showshitang: false
+      })
     }
     if (options.type == 1) {
       this.setData({
@@ -212,7 +216,7 @@ Page({
     } else {
       if (this.data.showUserAddr) {
         wx.showModal({
-          // cancelColor: '#FB6600',
+          cancelColor: '#FB6600',
           confirmColor: '#FB6600',
           title: '您的配送地址信息为: ',
           cancelText: '修改',
@@ -248,22 +252,22 @@ Page({
     wx.showLoading({
       mask: true
     });
-
     var params = {
-      url: "/weixin/order/comesubmit",
+      url: "/weixin/order/submit",
       method: "POST",
       data: {
         orderShopParam: [{
-          remarks: this.data.remark || '',
+          remarks: this.data.remarks || '',
           shopId: 1
         }]
       },
       callBack: res => {
+        console.log(res);
         wx.hideLoading();
         this.setData({
           orderIds: res.data
         })
-        this.calWeixinPay();
+        // this.calWeixinPay();
       }
     };
     http.request(params);
@@ -297,6 +301,7 @@ Page({
         userPassword: this.data.userPassword
       },
       callBack: function (res) {
+        console.log(res);
         wx.hideLoading();
         if (res.errorCode == 200 && this.data.payType == 1) {
           wx.requestPayment({

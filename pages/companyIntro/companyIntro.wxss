@@ -1,0 +1,57 @@
+.page {
+  padding: 20rpx;
+}
+
+.intro-image {
+  width: 100%;
+  height: auto;
+}
+
+.intro-content {
+  margin-top: 20rpx;
+  font-size: 14rpx;
+  line-height: 1.6;
+}
+
+.contact-info {
+  margin-top: 60rpx;
+  font-size: 12rpx;
+}
+
+.contact-info-item {
+  font-size: 20px;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+ 
+.phone {
+  display: flex;
+  align-items: center;
+  line-height: 80rpx;
+}
+
+.phone image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+
+.adr {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+/* 箭头 */
+.arrowhead {
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 2rpx solid #333;
+  border-right: 2rpx solid #333;
+  transform: rotate(45deg);
+  margin-right: 28rpx;
+}

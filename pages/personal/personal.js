@@ -49,7 +49,7 @@ Page({
         wx.hideLoading();
         if (res.errorCode === 200) {
           wx.showToast({
-            title: res.message || '修改成功', // 提示的内容
+            title: '修改成功', // 提示的内容
             icon: 'success', // 图标，可选值：'success', 'loading', 'none'
             duration: 2000, // 持续时间，单位为毫秒
             mask: true // 是否显示透明蒙层，防止触摸穿透

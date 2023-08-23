@@ -26,10 +26,6 @@
           <image src="/images/icon/list.png"></image>
           <view class="icon-desc">地址列表</view>
         </view>
-        <!-- <view class="icon">
-          <image src="/images/icon/canteen.png"></image>
-          <view class="icon-desc">绑定食堂</view>
-        </view> -->
         <view class="icon" bindtap="GoRecharge">
           <image src="/images/icon/record.png"></image>
           <view class="icon-desc">充值记录</view>
@@ -46,34 +42,11 @@
           <image src="/images/icon/help.png"></image>
           <view class="icon-desc">帮助中心</view>
         </view>
-        <!-- <view class="icon" bindtap="showTip">
-          <image src="/images/icon/play.png"></image>
-          <view class="icon-desc">支付二维码</view>
-        </view> -->
-        <!-- <view class="icon">
-          <image src="/images/icon/ding.png"></image>
-          <view class="icon-desc">订餐二维码</view>
-        </view> -->
-        <!-- <view class="icon">
-          <image src="/images/icon/apply.png"></image>
-          <view class="icon-desc">申请代理</view>
-        </view> -->
-        <!-- <view class="icon">
-          <image src="/images/icon/bangka.png"></image>
-          <view class="icon-desc">绑卡记录</view>
-        </view> -->
         <view class="icon" bindtap="ShowAuthentication">
           <image src="/images/icon/workers.png"></image>
           <view class="icon-desc">职工认证</view>
         </view>
-        <!-- <view class="icon" bindtap="ShowChangePassword">
-          <image src="/images/icon/bangka.png"></image>
-          <view class="icon-desc">修改密码</view>
-        </view> -->
-        <!-- <view class="icon" bindtap="showTip">
-          <image src="/images/icon/authentication.png"></image>
-          <view class="icon-desc">认证记录</view>
-        </view> -->
+ 
       </view>
     </view>
   </view>

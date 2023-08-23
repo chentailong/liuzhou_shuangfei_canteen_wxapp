@@ -1,0 +1,12 @@
+<view class="page">
+  <image class="intro-image" src="{{introImageUrl}}" mode="widthFix"></image>
+  <rich-text nodes="{{introHtml}}"></rich-text>
+  <view class="contact-info">
+    <view class="contact-info-item">公司联系方式：</view>
+       <view class="phone" bindtap="GoIpone">
+      <image src="/images/icon/user-ipone.png" />
+      <view class="adr">{{phoneNumber}}</view>
+      <view class="arrowhead"></view>
+    </view>
+  </view>
+</view>

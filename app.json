@@ -24,7 +24,8 @@
     "pages/pastry/pastry",
     "pages/box/box",
     "pages/list/list",
-    "pages/orderAll/orderAll"
+    "pages/orderAll/orderAll",
+    "pages/companyIntro/companyIntro"
   ],
   "window": {
     "backgroundTextStyle": "light",

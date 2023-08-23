@@ -88,8 +88,7 @@ Page({
       data: {
         categoryType: that.data.categoryType
       },
-      callBack: function (res) {
-        console.log(res)
+      callBack: function (res) { 
         that.setData({
           count: res.data.count,
           total: res.data.total,
@@ -127,8 +126,7 @@ Page({
       data: {
         categoryId: that.data.categoryId
       },
-      callBack: res => {
-        console.log(res);
+      callBack: res => { 
         if (res.errorCode == 200) {
           that.setData({
             orderingTime: res.data.orderingTime,
@@ -162,8 +160,7 @@ Page({
             shopCartIds.push(shopCartItem.shoppCartId)
           }
         })
-      })
-      console.log(shopCartIds);
+      }) 
       if (!shopCartIds.length) {
         wx.showToast({
           title: '请选择商品',
@@ -180,8 +177,7 @@ Page({
     }
   },
   // 获取就餐方式
-  getDiningType(e) {
-    console.log(e.detail.value)
+  getDiningType(e) { 
     this.setData({
       diningType: e.detail.value
     })
@@ -217,17 +213,7 @@ Page({
   },
 
   // 加
-  addNum(e) {
-    console.log(e)
-    // if(this.data.orderingTime == 1){
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '当前已过了订餐时间',
-    //     showCancel: false,
-    //     success: function(res){
-    //     }
-    //   })
-    // }
+  addNum(e) { 
     if (!app.globalData.userInfo) {
       wx.redirectTo({
         url: '/pages/login/login',
@@ -249,8 +235,7 @@ Page({
         url: '/pages/login/login',
       })
       return false
-    }
-    // console.log(e)
+    } 
     let num = e.currentTarget.dataset.num;
     let index = e.currentTarget.dataset.index;
     let cindex = e.currentTarget.dataset.cindex;
@@ -346,8 +331,7 @@ Page({
           shopCartIds.push(shopCartItem.shoppCartId)
         }
       })
-    })
-    console.log(shopCartIds);
+    }) 
     if (!shopCartIds.length) {
       wx.showToast({
         title: '请选择商品',
@@ -356,6 +340,7 @@ Page({
       return
     }
     wx.setStorageSync("shopCartIds", JSON.stringify(shopCartIds));
+    console.log(this.data.currentTime);
     wx.navigateTo({
       url: '/pages/goods-order/goods-order?orderEntry=0&frompage=便民超市&type=' + this.data.diningType + '&orderTime=' + this.data.currentTime,
     }) 
@@ -429,13 +414,7 @@ Page({
         productType: that.data.productType, //食品：早、中、晚
         orderTime: that.data.currentTime, //日期时间
       },
-      callBack: res => {
-        console.log(res);
-        // for (let i of res.data.categorys) {
-          // for (let j of i.products) {
-            // j.selectProductNums = 0
-          // }
-        // }
+      callBack: res => {  
         if (res.errorCode == 200) {
           res.data.categorys.forEach((item, index) => {
             item.toid = 'id' + index
@@ -520,8 +499,7 @@ Page({
           // 默认全选
           var shopCartItemDiscounts = res.data[0].shopCartItemDiscounts;
           shopCartItemDiscounts.forEach(shopCartItemDiscount => {
-            shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {
-              // console.log(shopCartItem)
+            shopCartItemDiscount.shopCartItems.forEach(shopCartItem => { 
               shopCartItem.checked = true;
             })
           })
@@ -552,8 +530,7 @@ Page({
   },
 
   //加购物车
-  addCarNum(e) {
-    console.log(e);
+  addCarNum(e) { 
     let shoppCartId = e.currentTarget.dataset.shoppcartid
     let productId = e.currentTarget.dataset.proid;
     let productSkuId = e.currentTarget.dataset.proskuid;

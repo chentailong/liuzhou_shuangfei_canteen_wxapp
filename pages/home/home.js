@@ -30,8 +30,8 @@ Page({
 
   //点击查看公司详情
   viewCompanyIntro() {
-    wx.switchTab({
-      url: '../my/my'
+    wx.navigateTo({
+      url: '/pages/companyIntro/companyIntro'
     });
   },
 

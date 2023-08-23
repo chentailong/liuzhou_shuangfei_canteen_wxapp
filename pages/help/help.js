@@ -6,7 +6,7 @@ Page({
    */
   data: {
     NewList: '',	
-    neinId: ''
+    newId: ''
   },
 
   /**
@@ -30,6 +30,7 @@ Page({
       method: 'GET',
       data: {},
       callBack: res => {
+        console.log(res);
         this.setData({
           NewList: res.data.records
         })
@@ -45,7 +46,7 @@ Page({
       url: '/weixin/newsInfo/getNewsInfoDetails',
       method: 'GET',
       data: {
-        neinId: thas.data.neinId
+        newId: thas.data.newId
       },
       callBack: res => {
         console.log(res)

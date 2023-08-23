@@ -7,18 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userSex:'',
+    userSex: '',
     timeIndex: 0,
     items: [
-      {value: 'userSex', name: '男'},
-      {value: 'userSex', name: '女'}
+      { value: 'userSex', name: '男' },
+      { value: 'userSex', name: '女' }
     ],
     userName: '',  // 用户名
     officerNumber: '', // 工号
     identityCard: '',  // 身份证号
-    userPassword: '', //用户支付密码
+    userPhone: '', //用户手机号
     checkStatus: '',
-    userType: ''
+    userType: '',
+    userBirthday: '请输入生日',
   },
 
   /**
@@ -31,24 +32,17 @@ Page({
     })
   },
 
-  radioChange(e) {
-    // const items = this.data.items
-    // for (let i = 0, len = items.length; i < len; ++i) {
-    //   items[i].checked = items[i].value === e.detail.value
-    // }
-    this.setData({
-      userSex: e.detail.value
-    })
-  },
   // 点击员工认证
-  handleClickBtn(e){
-    var ths = this;
-    var userName = ths.data.userName;
-    var userSex = ths.data.userSex;
-    var officerNumber = ths.data.officerNumber;
-    var identityCard = ths.data.identityCard;
-    var userPassword = ths.data.userPassword;
-    var reg = /(^1[0-9]{10}$)/;
+  handleClickBtn(e) {
+    const ths = this
+    const userName = ths.data.userName
+    const userSex = ths.data.userSex
+    const officerNumber = ths.data.officerNumber
+    const identityCard = ths.data.identityCard
+    const userPhone = ths.data.userPhone
+    const userBirthday = this.data.userBirthday
+    const reg = /(^1[0-9]{10}$)/
+    const idCardRegex = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/
     if (!userName) {
       wx.showToast({
         title: '请输入您的姓名',
@@ -56,44 +50,60 @@ Page({
       })
       return;
     }
-    if (!userPassword) {
-      wx.showToast({
-        title: '请输入支付密码',
-        icon: "none"
-      })
-      return;
-    }
-    if(!userSex){
+    if (!userSex) {
       wx.showToast({
         title: '请输入您的性别',
         icon: 'none'
       })
+      return
     }
-    if(!officerNumber){
+    if (!officerNumber) {
       wx.showToast({
         title: '请输入您的工号',
         icon: 'none'
       })
+      return
     }
-    if(!identityCard){
+    if (!userPhone) {
       wx.showToast({
-        title: '请输入您的手机号码',
-        icon: 'none'
+        title: '请输入手机号码',
+        icon: "none"
       })
+      return;
     }
-
-    if (reg.test(ths.data.identityCard) === false) {
+    if (reg.test(ths.data.userPhone) === false) {
       wx.showToast({
         title: '请输入正确的手机号码',
         icon: 'none'
       })
       return false
     }
-  
+    if (!identityCard) {
+      wx.showToast({
+        title: '请输入您的身份证号',
+        icon: 'none'
+      })
+      return
+    }
+    if (idCardRegex.test(ths.data.identityCard) === false) {
+      wx.showToast({
+        title: '请输入正确的身份证号',
+        icon: 'none'
+      })
+      return false
+    }
+
+    if (userBirthday === '请输入生日') {
+      wx.showToast({
+        title: '请输入生日信息',
+        icon: 'none'
+      })
+      return
+    }
+
     var url = "/weixin/userInfo/verifyUserInfo";
     var method = "POST";
     wx.showLoading();
-    //员工地址
     var params = {
       url: url,
       method: method,
@@ -103,21 +113,22 @@ Page({
         userSex: ths.data.userSex,
         identityCard: ths.data.identityCard,
         officerNumber: ths.data.officerNumber,
-        userPassword: ths.data.userPassword,
+        userPhone: ths.data.userPhone,
+        userBirthday: ths.data.userBirthday,
         userId: app.globalData.userInfo.userId,
         userType: app.globalData.userInfo.userType
       },
       callBack: function (res) {
         wx.hideLoading();
-        if(res.errorCode == 200){
+        if (res.errorCode == 200) {
           wx.showToast({
             title: '提交成功！',
             icon: "none"
           })
           wx.navigateBack({
             delta: 1,
-          })  
-        }else if(res.errorCode == 822){
+          })
+        } else if (res.errorCode == 822) {
           wx.showModal({
             title: '提示',
             confirmText: '返回',
@@ -130,7 +141,7 @@ Page({
             }
           })
           return false
-        } else if(res.errorCode == 823) {
+        } else if (res.errorCode == 823) {
           wx.showModal({
             title: '提示',
             confirmText: '返回',
@@ -147,11 +158,19 @@ Page({
     }
     http.request(params);
   },
+
+
   // 用户名
   onReceiverInput: function (e) {
     this.setData({
       userName: e.detail.value
     });
+  },
+  // 性别
+  radioChange(e) {
+    this.setData({
+      userSex: e.detail.value
+    })
   },
   // 身份证号
   showIdentityCard: function (e) {
@@ -159,10 +178,10 @@ Page({
       identityCard: e.detail.value
     });
   },
-  // 支付密码
-  showUserPassword: function (e) {
+  // 手机号
+  showUserPhone: function (e) {
     this.setData({
-      userPassword: e.detail.value
+      userPhone: e.detail.value
     });
   },
   // 工号
@@ -171,20 +190,26 @@ Page({
       officerNumber: e.detail.value
     })
   },
+  //生日
+  bindDateChange: function (e) {
+    this.setData({
+      userBirthday: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
-  getTime(e){
+  getTime(e) {
     this.setData({
       timeIndex: e.detail.value,
       productList: []
     })
   },
 
-  
+
   /**
    * 生命周期函数--监听页面显示
    */

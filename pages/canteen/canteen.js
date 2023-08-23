@@ -23,7 +23,6 @@ Page({
     // 当前左侧选择的
     HZL_currentLeftSelect: null,
     timeIndex: 0,
-    // date: util.formatDate(new Date()),
     startDate: util.formatDate(new Date()),
     endDate: util.getTimeLastWeek(new Date(), 6),
     timeList: [{
@@ -90,7 +89,6 @@ Page({
         categoryType: that.data.categoryType
       },
       callBack: function (res) {
-        console.log(res)
         that.setData({
           count: res.data.count,
           total: res.data.total,
@@ -164,7 +162,6 @@ Page({
           }
         })
       })
-      console.log(shopCartIds);
       if (!shopCartIds.length) {
         wx.showToast({
           title: '请选择商品',
@@ -219,16 +216,6 @@ Page({
 
   // 加
   addNum(e) {
-    console.log(e)
-    // if(this.data.orderingTime == 1){
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '当前已过了订餐时间',
-    //     showCancel: false,
-    //     success: function(res){
-    //     }
-    //   })
-    // }
     if (!app.globalData.userInfo) {
       wx.redirectTo({
         url: '/pages/login/login',
@@ -347,7 +334,7 @@ Page({
           shopCartIds.push(shopCartItem.shoppCartId)
         }
       })
-    }) 
+    })
     if (!shopCartIds.length) {
       wx.showToast({
         title: '请选择商品',
@@ -356,9 +343,10 @@ Page({
       return
     }
     wx.setStorageSync("shopCartIds", JSON.stringify(shopCartIds));
+    console.log(this.data.date);
     wx.navigateTo({
       url: '/pages/goods-order/goods-order?orderEntry=1&frompage=营养食堂&type=' + this.data.diningType + '&orderTime=' + this.data.date,
-    }) 
+    })
   },
 
   /**

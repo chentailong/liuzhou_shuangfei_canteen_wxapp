@@ -1,14 +1,5 @@
 <view class="authentication">
   <view class="content">
-    <!-- <view class="hospital">
-      <view class="adr">选择医院</view>
-      <picker class="time-item" range="{{timeList}}" bindchange="getTime">
-        <view class="hospital-select">
-          <view class="select">选择您现在所在的医院</view>
-          <image src="/images/icon/right-icon.png"></image>
-        </view>
-      </picker>
-    </view> -->
     <view class="hospital">
       <view class="adr">姓名</view>
       <view class="time-item">
@@ -34,24 +25,33 @@
       <view class="adr">工号</view>
       <view class="time-item">
         <view class="hospital-select">
-          <input class="InputUser" placeholder='请输入工号' type='text' value="{{officerNumber}}"  bindinput="showFloatView" ></input>
+          <input class="InputUser" placeholder='请输入工号' type='text' value="{{officerNumber}}" bindinput="showFloatView"></input>
         </view>
       </view>
     </view>
     <view class="hospital">
-      <view class="adr">支付密码</view>
-      <view class="time-item">
-        <view class="hospital-select">
-          <input class="InputUser" password type="text" placeholder='请输入支付密码' value="{{userPassword}}"  bindinput="showUserPassword" ></input>
-        </view>
-      </view>
-    </view>
-    <view class="hospital">
-      <!-- 修改文字为手机号，未修改接口名称 -->
       <view class="adr">手机号</view>
       <view class="time-item">
         <view class="hospital-select">
-          <input class="InputUser" placeholder='请输入手机号' type='text' value="{{identityCard}}"  bindinput="showIdentityCard" ></input>
+          <input class="InputUser" type="text" placeholder='请输入手机号' value="{{userPhone}}" bindinput="showUserPhone"></input>
+        </view>
+      </view>
+    </view>
+    <view class="hospital">
+      <view class="adr">身份证号</view>
+      <view class="time-item">
+        <view class="hospital-select">
+          <input class="InputUser" placeholder='请输入身份证号' type='text' value="{{identityCard}}" bindinput="showIdentityCard"></input>
+        </view>
+      </view>
+    </view>
+    <view class="hospital">
+      <view class="adr">生日</view>
+      <view class="time-item">
+        <view class="hospital-select">
+          <picker mode="date" value="{{userBirthday}}" start="1949-01-01" bindchange="bindDateChange">
+            <view class="InputUser">{{userBirthday}}</view>
+          </picker>
         </view>
       </view>
     </view>

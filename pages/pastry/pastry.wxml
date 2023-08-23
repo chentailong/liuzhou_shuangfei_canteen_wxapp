@@ -5,8 +5,7 @@
       <image class="line-img" src="{{categoryType == 1?'/images/icon/shop.png':'/images/icon/pastry.png'}}"></image>
       <view class="line-text">
         <text class="line-text-big">糕点订购</text>
-        <text>甜蜜糕点 甜过初恋</text>
-        <!-- <text>配送时间：{{deliveryTime}}</text> -->
+        <text>甜蜜糕点 甜过初恋</text> 
       </view>
     </view>
   </view>
@@ -18,8 +17,7 @@
         <image src="/images/icon/right-icon.png"></image>
       </view>
     </picker> 
-  </view>
-  <!-- <view class="num-price">温馨提示：最低消费价格10元套餐(10元包含任意主食,肉类,青菜,三个菜品,每单只有一个套餐,超出的菜品按单价累加)</view> -->
+  </view> 
   <view class="main">
     <!-- 左侧菜单start -->
     <scroll-view scroll-y="true" class='leftmenu' scroll-top="{{ HZL_leftToTop }}" scroll-with-animation="true">
@@ -39,8 +37,8 @@
         <block wx:for='{{item.products}}' wx:key='products' wx:for-item="itemChild" wx:for-index="indexChild">
           <view class='show-item' bindtap="showDetail" data-src="{{itemChild.picturePath}}">
             <view class='more-prod-pic'>
-              <image src='{{itemChild.picturePath}}&x-oss-process=image/resize,w_100,m_lfit,h_100' class='more-pic'
-                mode='widthFix'></image>
+              <!-- <image src='{{itemChild.picturePath}}&x-oss-process=image/resize,w_100,m_lfit,h_100' class='more-pic' mode='widthFix'></image> -->
+              <image src='{{itemChild.picturePath}}' class='more-pic' mode='widthFix'></image>
             </view>
             <view class='prod-text-right'>
               <view class='prod-text more'>
@@ -158,9 +156,7 @@
       </label>
     </radio-group>
     <!-- 备注信息 -->
-    <view class="prod-inp">
-      <!-- <view class="prod-inp-label">配送时间：{{deliveryTime}}</view> -->
-      <!-- <input class="prod-inp-con" type="text" value="" bindinput="getRemarks" placeholder="请输入地址" /> -->
+    <view class="prod-inp"> 
     </view>
     <button class="hover-class" bindtap="GoOrder" type="primary" size="90%">确定</button>
   </view>

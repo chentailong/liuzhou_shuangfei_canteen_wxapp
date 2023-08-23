@@ -74,7 +74,7 @@ Page({
       return false
     }
     this.setData({
-      categoryType: 0,
+      categoryType: 2,
     })
   },
 
@@ -218,16 +218,7 @@ Page({
 
   // 加
   addNum(e) {
-    console.log(e)
-    // if(this.data.orderingTime == 1){
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '当前已过了订餐时间',
-    //     showCancel: false,
-    //     success: function(res){
-    //     }
-    //   })
-    // }
+    console.log(e) 
     if (!app.globalData.userInfo) {
       wx.redirectTo({
         url: '/pages/login/login',
@@ -357,7 +348,7 @@ Page({
     }
     wx.setStorageSync("shopCartIds", JSON.stringify(shopCartIds));
     wx.navigateTo({
-      url: '/pages/goods-order/goods-order?orderEntry=0&frompage=便民超市&type=' + this.data.diningType + '&orderTime=' + this.data.date,
+      url: '/pages/goods-order/goods-order?orderEntry=2&frompage=糕点选购&type=' + this.data.diningType + '&orderTime=' + this.data.date,
     }) 
   },
 
