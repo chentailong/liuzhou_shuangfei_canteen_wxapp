@@ -15,19 +15,19 @@ const formatDate = date => {
   return [year, month, day].map(formatNumber).join('-')
 }
 
-const getTimeLastWeek = (dates, later) => {
-    let dateObj = {};
-    // let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
-    let date = new Date(dates);
-    date.setDate(date.getDate() + later);
-    let day = date.getDay();
-    dateObj.year = date.getFullYear();
-    dateObj.month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth()+1);
-    dateObj.day = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
-    // dateObj.week = show_day[day];
-    // console.log([dateObj.year, dateObj.month, dateObj.day].map(formatNumber).join('-'))
-    return [dateObj.year, dateObj.month, dateObj.day].map(formatNumber).join('-');
-  }
+const getTimeLastWeek = (dates, later) => {
+  let dateObj = {};
+  // let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+  let date = new Date(dates);
+  date.setDate(date.getDate() + later);
+  let day = date.getDay();
+  dateObj.year = date.getFullYear();
+  dateObj.month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
+  dateObj.day = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  // dateObj.week = show_day[day];
+  // console.log([dateObj.year, dateObj.month, dateObj.day].map(formatNumber).join('-'))
+  return [dateObj.year, dateObj.month, dateObj.day].map(formatNumber).join('-');
+}
 
 
 // 拿到当前时间段
@@ -45,15 +45,15 @@ const DataTime = date => {
 const getTimeSlot = data => {
   var time = parseInt(new Date().getHours()); //返回小时数 
   let type
-　　if (10 <= time && time <= 12) {
-  //  午餐
-  　　type = 1
-　　} else if (12 <= time) {
-  // 晚餐
-  　　type = 2
-　　} else {
-  　　type = 0
-　　}
+  if (10 <= time && time <= 12) {
+    //  午餐
+    type = 1
+  } else if (12 <= time) {
+    // 晚餐
+    type = 2
+  } else {
+    type = 0
+  }
   return type
 }
 

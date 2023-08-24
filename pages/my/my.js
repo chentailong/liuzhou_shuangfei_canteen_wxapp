@@ -61,12 +61,14 @@ Page({
       url: '/pages/authentication/authentication',
     })
   },
-    // 跳转到修改密码
-    ShowChangePassword(){
+
+  // 前往优惠券
+  GoCoupon(){
     wx.navigateTo({
-      url: '/pages/changePassword/changePassword',
+      url: '/pages/coupon/coupon',
     })
   },
+
   // 请求用户详情
   getUserInfo(){
     wx.showLoading();

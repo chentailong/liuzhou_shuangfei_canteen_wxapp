@@ -9,7 +9,7 @@
     "pages/pay-result/pay-result",
     "pages/personal/personal",
     "pages/authentication/authentication",
-    "pages/help/help", 
+    "pages/help/help",
     "pages/canteen/canteen",
     "pages/canteenOrder/order",
     "pages/recharge/recharge",
@@ -24,10 +24,11 @@
     "pages/pastry/pastry",
     "pages/pastryOrder/order",
     "pages/box/box",
-    "pages/BoxOrder/order",
+    "pages/boxOrder/order",
     "pages/list/list",
     "pages/orderAll/orderAll",
-    "pages/companyIntro/companyIntro"
+    "pages/companyIntro/companyIntro",
+    "pages/coupon/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -64,6 +65,8 @@
         "selectedIconPath": "images/tabbar/my-sel.png"
       }
     ]
+    
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }

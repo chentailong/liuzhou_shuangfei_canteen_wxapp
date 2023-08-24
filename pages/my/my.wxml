@@ -30,7 +30,7 @@
           <image src="/images/icon/record.png"></image>
           <view class="icon-desc">充值记录</view>
         </view>
-        <view class="icon" bindtap="GoOrder">
+        <view class="icon" bindtap="GoCoupon">
           <image src="/images/icon/consumption.png"></image>
           <view class="icon-desc">优惠券</view>
         </view>

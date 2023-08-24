@@ -1,0 +1,49 @@
+<view>
+    <!-- 选择器 -->
+    <view class="time">
+        <picker class="time-item" bindchange="bindPickerChange" range-key='name' range="{{array}}">
+            <view>
+                <text>{{array[index].name}}</text>
+                <image src="/images/icon/right-icon.png"></image>
+            </view>
+        </picker>
+        <text class="time-line"></text>
+        <picker class="time-item" range="{{array}}" range-key='name' bindchange="bindPickerChange">
+            <view>
+                <text>{{array[index].name}}</text>
+                <image src="/images/icon/right-icon.png"></image>
+            </view>
+        </picker>
+    </view>
+    <!-- 优惠券 -->
+    <scroll-view class="scroll-view" scroll-y wx:if="{{couponList.length>0}}" bindscrolltolower="getMore">
+        <view class="container">
+            <block wx:for="{{couponList}}" wx:key="index">
+                <view class="coupon-list">
+                    <view class="coupon">
+                        <view class="coupon-info">
+                            <view class="cpupon-item">
+                                ￥
+                                <text class="coupon-amt">{{item.reductionAmt}}</text>
+                            </view>
+                            <view class="coupon-expire">满￥{{item.useCondition}}可用</view>
+                            <!-- <view class="coupon-title">{{item.couponName}}</view>
+                            <view class="coupon-desc">{{item.description}}</view> -->
+                            <view class="coupon-expire">有效期至：{{item.endTime}}</view>
+                        </view>
+                        <view class="coupon-action">
+                            <button class="btn-receive" bindtap="receiveCoupon" data-index="{{index}}">
+                                领取
+                            </button>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </scroll-view>
+    <!-- 暂无更多 -->
+    <view class="order-no" wx:else>
+        <image src="/images/icon/no-icon.png" mode="widthFix"></image>
+        <text>暂无数据</text>
+    </view>
+</view>
