@@ -10,7 +10,7 @@
           <view class="choice-left" bindtap="GoCanteen" data-type="1">
             <view class="choice-desc">当前订单</view>
           </view>
-          <view class="choice-left" bindtap="GoCanteen" data-type="1">
+          <view class="choice-left" bindtap="GoHistoryCanteen" data-type="1">
             <view class="choice-desc">历史订单</view>
           </view>
         </view>
@@ -24,7 +24,7 @@
           <view class="choice-right" bindtap="GoLine" data-type="0">
             <view class="choice-desc">当前订单</view>
           </view>
-          <view class="choice-right" bindtap="GoLine" data-type="0">
+          <view class="choice-right" bindtap="GoHistoryLine" data-type="0">
             <view class="choice-desc">历史订单</view>
           </view>
         </view>
@@ -38,7 +38,7 @@
           <view class="choice-right" bindtap="GoPastry" data-type="0">
             <view class="choice-desc">当前订单</view>
           </view>
-          <view class="choice-right" bindtap="GoPastry" data-type="0">
+          <view class="choice-right" bindtap="GoHistoryPastry" data-type="0">
             <view class="choice-desc">历史订单</view>
           </view>
         </view>
@@ -52,7 +52,7 @@
           <view class="choice-right" bindtap="GoBox" data-type="0">
             <view class="choice-desc">当前订单</view>
           </view>
-          <view class="choice-left" bindtap="GoBox" data-type="1">
+          <view class="choice-left" bindtap="GoHistoryBox" data-type="1">
             <view class="choice-desc">历史订单</view>
           </view>
         </view>

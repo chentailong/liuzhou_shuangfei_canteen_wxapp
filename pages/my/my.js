@@ -19,10 +19,10 @@ Page({
   onGotUserInfo: function (res) {
     http.updateUserInfo();
   },
-  // 跳转到订单页面
-  GoOrder(){
-    wx.switchTab({
-      url: '/pages/order/order'
+   // 前往优惠券
+   GoCoupon(){
+    wx.navigateTo({
+      url: '/pages/coupon/coupon',
     })
   },
   // 跳转到个人资料
@@ -61,14 +61,12 @@ Page({
       url: '/pages/authentication/authentication',
     })
   },
-
-  // 前往优惠券
-  GoCoupon(){
-    wx.navigateTo({
-      url: '/pages/coupon/coupon',
-    })
-  },
-
+    // 跳转到修改密码
+  //   ShowChangePassword(){
+  //   wx.navigateTo({
+  //     url: '/pages/changePassword/changePassword',
+  //   })
+  // },
   // 请求用户详情
   getUserInfo(){
     wx.showLoading();

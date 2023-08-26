@@ -50,11 +50,23 @@ Page({
       url: '/pages/canteenOrder/order'
     })
   },
+  // 食堂历史订单
+  GoHistoryCanteen() {
+    wx.navigateTo({
+      url: '/pages/canteenOrder/historyOrder'
+    })
+  },
 
   // 前往超市
   GoLine() {
     wx.navigateTo({
-      url: '/pages/supermarKetOrder/order'
+      url: '/pages/supermarketOrder/order'
+    })
+  },
+  // 超市历史订单
+  GoHistoryLine() {
+    wx.navigateTo({
+      url: '/pages/supermarketOrder/historyOrder'
     })
   },
   // 前往糕点
@@ -63,11 +75,23 @@ Page({
       url: '/pages/pastryOrder/order'
     })
   },
+  // 糕点历史订单
+  GoHistoryPastry() {
+    wx.navigateTo({
+      url: '/pages/pastryOrder/historyOrder'
+    })
+  },
 
   //前往包厢
   GoBox() {
     wx.navigateTo({
       url: '/pages/boxOrder/order'
+    })
+  },
+  // 包厢历史订单
+  GoHistoryBox() {
+    wx.navigateTo({
+      url: '/pages/boxOrder/historyOrder'
     })
   },
 

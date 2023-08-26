@@ -17,7 +17,7 @@
   <scroll-view class="scroll-view" scroll-y wx:if="{{orderList.length>0}}" bindscrolltolower="getMore">
     <view class="order-list">
       <block wx:for="{{orderList}}" wx:key="orderList">
-        <view class="order-item">
+        <view class="order-item" bindtap="showDetail" data-item="{{item}}">
           <view class="order-item-addr">
             <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==1}}">待付款</text>
             <text class="order-item-pro-content color1dffa1" wx:if="{{item.orderStatus==2}}">未取餐</text>
@@ -126,33 +126,41 @@
 
 
 <!-- 商品详情 -->
+<!-- 商品详情 -->
 <view class="room-detail-box" hidden="{{detailFlag}}">
   <view class="room-detail">
-    <view class="room-detail-con">
-      <view class="shop-detail-pro">欢迎使用一卡通支付</view>
-    </view>
-    <view class="page-section">
-      <view class='weui-cells__price'>
-        <view class='weui-cells-price'>
-          <text class='weui-cells-symbol'>合计：￥</text>
-          <text class='weui-cells-big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
-          <text class='weui-cells-small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+    <view class="goods" style="margin:20rpx">
+      <view class="goods-list">
+        <view class='item-cont' wx:for="{{detail.orderItems}}" wx:key="orderItems" wx:for-item="itemChild" style="border-bottom:1px solid #f1f1f1">
+          <view class='prod-pic'>
+            <image src='{{itemChild.productPicture}}&x-oss-process=image/resize,h_200,w_200,m_lfit'></image>
+          </view>
+          <view class='prod-info'>
+            <view class='prodname'>{{itemChild.productName}}</view>
+            <view class='price-nums'>
+              <text class='prodprice'>
+                <text class='symbol'>￥</text>
+                <text class='big-num'>{{wxs.parsePrice(itemChild.productPrice)[0]}}</text>
+                <text class='small-num'>.{{wxs.parsePrice(itemChild.productPrice)[1]}}</text>
+              </text>
+              <text class="prodcount">x{{itemChild.productNums}}</text>
+            </view>
+          </view>
         </view>
       </view>
-      <view class="weui-cells__title">请输入一卡通密码</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <input class="weui-input" password placeholder='请输入一卡通密码' type='text' bindinput="onReceiverInput"
-            value="{{userPassword}}"></input>
+      <view class="content-bottom">
+        <text class="content-date">配送时间：{{currentTime}}</text>
+        <view class="content-desc" style="margin-top: 0rpx;" wx:if="{{detail.orderFeed == 1 && detail.orderStatus==1 || detail.orderStatus==2}}">
+          <text>用餐时段：{{(detail.productType=="0")?"早餐":((detail.productType=="1")?"午餐":"晚餐")}}</text>
         </view>
       </view>
-      <view class="cozy">温馨提示：使用一卡通支付密码与员工认证密码保持一致</view>
+      <view class="goods-time">下单时间：{{detail.createTime}}</view>
+      <view class="goods-time"></view>
+      <view class="order-num">订单号码：{{detail.orderId}}</view>
+       <view class="goods-time">用户名称：{{detail.userName}}</view>
     </view>
-    <button class="hover-class" bindtap="calWeixinPay" data-id="{{item.orderId}}" type="primary" size="90%">确定</button>
-    <!-- <button class="hover-class" bindtap="submitOrder" data-id="{{item.orderId}}" type="primary" size="90%">确定</button> -->
   </view>
   <!-- 关闭按钮 -->
   <image bindtap="closeDetail" class="room-detail-colse" src="/images/icon/close.png" mode="widthFix"></image>
 </view>
-
 <wxs module="wxs" src="../../wxs/number.wxs" />

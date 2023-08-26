@@ -1,15 +1,13 @@
 <view style="height:100%">
   <view class="user">
-    <view class="user-bg"
-      style="background:#fff;">
+    <view class="user-bg" style="background:#fff;">
       <image class="user-img" src="{{userInfo.userAvatar}}"></image>
       <view style="margin: 41rpx;color:#333">
         <view class='header-name'>用户名:{{userInfo.userNickName}}</view>
-         <view class="user-title">手机号:{{userInfo.userPhone}}</view>
+        <view class="user-title">手机号:{{userInfo.userPhone}}</view>
       </view>
     </view>
   </view>
-  
   <view class="user-btn">
     <text>会员余额：</text>
     <text class="user-price-num">￥{{canAmount}}</text>
@@ -46,8 +44,11 @@
           <image src="/images/icon/workers.png"></image>
           <view class="icon-desc">职工认证</view>
         </view>
- 
+        <!-- <view class="icon" bindtap="ShowChangePassword">
+          <image src="/images/icon/bangka.png"></image>
+          <view class="icon-desc">修改密码</view>
+        </view> -->
       </view>
     </view>
   </view>
-</view> 
+</view>
