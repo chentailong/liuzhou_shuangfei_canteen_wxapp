@@ -1,62 +1,59 @@
 page {
   background: #f2f2f2;
+  margin: 0;
+  padding: 0;
 }
 
-/* 选择 */
-.choice {
+
+.user-content {
   background: #fff;
-  display: flex;
-  flex-direction: column;
+  width: 90%;
+  margin: 20rpx auto;
+  border-radius: 10rpx;
 }
 
-.choice-icon {
-  display: flex;
-  flex-direction: column;
-}
-
-.choice-title {
-  text-align: center;
-  color: #333;
-  letter-spacing: 1px;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+/* 基本信息 */
+.content-title {
+  color: #3dc5b7;
   font-size: 32rpx;
-  font-weight: 700;
-}
-
-.choice-left,
-.choice-right {
+  padding: 20rpx 0;
   display: flex;
-  flex-direction: row;
   align-items: center;
-
-  border-bottom: 1rpx solid #f1f1f1;
+  border-bottom: 1rpx solid #ededed;
 }
 
-.choice-img {
-  width: 50rpx;
-  height: 50rpx;
-  margin-right: 30rpx;
-  border-radius: 50%;
+.content-title::before {
+  width: 10rpx;
+  height: 20rpx;
+  background: #3dc5b7;
+  content: '';
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
-.choice-desc {
-  font-size: 32rpx;
-  margin-top: 10rpx;
-  margin-left: 80rpx;
-  margin-bottom: 20rpx;
-}
-
-.container {
-  padding: 20px;
-  border: 1px solid #f1f1f1;
-}
-
-.header {
+.icons {
   display: flex;
-  cursor: pointer;
+  justify-content: space-between;
 }
 
-.content {
-  margin-top: 10px;
+.list {
+  display: contents;
+  flex-wrap: wrap;
+}
+
+.list .icon {
+  text-align: center;
+  width: 50%;
+  margin-bottom: 15rpx;
+  margin-top: 30rpx;
+}
+
+.list .icon image {
+  width: 95rpx;
+  height: 95rpx;
+}
+
+.icon-desc {
+  font-size: 26rpx;
+  margin: 17rpx 0;
 }

@@ -25,6 +25,7 @@
     "pages/pastryOrder/order",
     "pages/box/box",
     "pages/boxOrder/order",
+    "pages/boxOrder/historyOrder",
     "pages/list/list",
     "pages/orderAll/orderAll",
     "pages/companyIntro/companyIntro",
@@ -59,7 +60,7 @@
         "selectedIconPath": "images/tabbar/order-sel.png"
       },
       {
-        "pagePath": "pages/login/login",
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "images/tabbar/my.png",
         "selectedIconPath": "images/tabbar/my-sel.png"
