@@ -59,7 +59,7 @@
         "selectedIconPath": "images/tabbar/order-sel.png"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/login/login",
         "text": "我的",
         "iconPath": "images/tabbar/my.png",
         "selectedIconPath": "images/tabbar/my-sel.png"

@@ -15,16 +15,34 @@
       </view>
     </view>
   </view>
- 
-  <button style="width: 69%;" class="btn-login {{!authorization?'btn-bg':''}}" open-type="getUserInfo" bindgetuserinfo="registration" disabled="{{authorization}}" lang="zh_CN">
+  <!-- <button style="width: 69%;" class="btn-login {{!authorization?'btn-bg':''}}"
+   open-type="getUserInfo" bindgetuserinfo="registration" disabled="{{authorization}}" lang="zh_CN">
+    微信用户注册
+  </button> -->
+  <button style="width: 69%;" class="btn-login {{!authorization?'btn-bg':''}}" open-type="getUserInfo" bindtap="GoPopup" disabled="{{authorization}}" lang="zh_CN">
     微信用户注册
   </button>
-
- <view class="item-prompt">
+  <view class="item-prompt">
     <checkbox-group bindchange="agreement">
       <checkbox value="cb" />
     </checkbox-group>
     <view>我已同意以下用户协议内容</view>
   </view>
-
+  <view class="popup" wx:if="{{model}}">
+    <view class="price-detail-model1" bindtap="GoPopup"></view>
+    <view class="price-detail1"> 
+      <view data-weui-theme="{{theme}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{avatarUrl}}"></image>
+        </button>
+        <form catchsubmit="formSubmit">
+          <view class="row">
+            <view class="text1">昵称：</view>
+            <input type="nickname" class="weui-input" name="nickname" placeholder="请输入昵称" />
+          </view>
+          <button class="hover-class" form-type="submit" type="primary" size="90%">确定</button>
+        </form>
+      </view>
+    </view>
+  </view>
 </view>

@@ -1,6 +1,7 @@
 // pages/login/login.js
 const http = require("../../utils/http.js");
 const app = getApp()
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
   /**
    * 页面的初始数据
@@ -8,10 +9,22 @@ Page({
   data: {
     index: 0,
     authorization: true,
-    flag: 0
+    flag: 0,
+    model: false, // 显示于隐藏获取微信用户名于头像
+    avatarUrl: defaultAvatarUrl,
+    theme: wx.getSystemInfoSync().theme
   },
-  // 用户注册
-  registration(e) {
+
+  //获取微信头像 
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail
+    this.setData({
+      avatarUrl,
+    })
+  },
+  // 获取微信名 并注册用户
+  formSubmit(e) {
+    console.log(e.detail.value.nickname);
     const that = this;
     if (!that.data.phone) {
       wx.showToast({
@@ -20,49 +33,38 @@ Page({
       })
       return false
     }
-    if (!e.detail.userInfo) {
+    if (!e.detail.value.nickname) {
       wx.showToast({
         title: '请授权微信信息',
         icon: 'none'
       })
       return false
     }
-
     var params = {
       url: "/weixin/userInfo/registration",
       method: "POST",
       data: {
         openId: app.globalData.openid,
-        userAvatar: e.detail.userInfo.avatarUrl,
+        userAvatar: that.data.avatarUrl,
         userName: that.data.userName || '',
-        userNickName: e.detail.userInfo.nickName,
+        userNickName: e.detail.value.nickname,
         userPhone: that.data.phone,
         officerNumber: that.data.officerNumber,
-        userSex: e.detail.userInfo.gender
+        userSex: that.data.userSex
       },
       callBack: function (res) {
         console.log(res);
         app.globalData.userInfo = res.data
+        that.GoPopup()
         wx.switchTab({
           url: '/pages/home/home'
         })
       }
+
     };
     http.request(params);
-  }, 
-  // 获取姓名
-  getName(e) {
-    this.setData({
-      userName: e.detail.value
-    })
   },
-  // 获取会员类型
-  getType(e) {
-    // console.log(e)
-    this.setData({
-      index: e.detail.value
-    })
-  },
+ 
 
   // 获取手机号码
   getUserPhone(e) {
@@ -78,7 +80,7 @@ Page({
         encryptDataB64: e.detail.encryptedData,
         ivB64: e.detail.iv
       },
-      callBack: function (res) { 
+      callBack: function (res) {
         if (res.data) {
           that.setData({
             phone: res.data
@@ -94,6 +96,7 @@ Page({
     };
     http.request(params);
   },
+  // 授权允许点击登录按钮
   agreement() {
     this.setData({
       authorization: !this.data.authorization
@@ -122,6 +125,15 @@ Page({
       }
     })
   },
+
+  // 隐藏弹窗
+  GoPopup(e) {
+    this.setData({
+      model: !this.data.model
+    })
+  },
+
+
 
   /**
    * 生命周期函数--监听页面隐藏

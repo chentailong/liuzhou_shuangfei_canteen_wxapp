@@ -18,14 +18,14 @@ page {
 
 .header-top {
   margin: 0rpx auto;
-  color: #ff961e;
+  color: #337CCF;
   margin-top: 100rpx;
   font-size: 40rpx;
 }
 
 .header-bottom {
   margin: 0 auto;
-  color: #ff961e;
+  color: #337CCF;
   margin-bottom: 40rpx;
   font-size: 40rpx;
 }
@@ -57,7 +57,7 @@ page {
   width: 180rpx;
   height: 180rpx;
   border-radius: 50%;
-  box-shadow: 0 0 20rpx #ff961e;
+  box-shadow: 0 0 20rpx #337CCF;
 }
 
 button::after {
@@ -70,8 +70,8 @@ button::after {
   font-size: 28rpx;
   padding: 15rpx 0;
   line-height: normal;
-  color: #ff565f;
-  border: 1rpx solid #ff565f;
+  color: #337CCF;
+  border: 1rpx solid #337CCF;
 }
 
 .item-prompt {
@@ -87,8 +87,8 @@ button::after {
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  border-color: #fb6600;
-  background: #fb6600;
+  border-color: #337CCF;
+  background: #337CCF;
 }
 
 .user-name {
@@ -112,7 +112,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   /* 对勾大小 30rpx */
   color: #fff;
   /* 对勾颜色 白色 */
-  background: #ff565f;
+  background: #337CCF;
   transform: translate(-50%, -50%) scale(1);
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
@@ -143,8 +143,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 30rpx 20rpx;
-  /* border-bottom: 1rpx solid #e5e5e5; */
+  padding: 30rpx 20rpx; 
   color: #fff;
   font-size: 60rpx;
 }
@@ -186,5 +185,118 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .btn-bg {
-  background-color: #91C8E4;
+  background-color: #337CCF;
+}
+
+/* 对话框 */
+.popup {
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-detail-model1 {
+  height: 350rpx;
+  background: rgba(0, 0, 0, .4);
+}
+
+.price-detail1 {
+  flex: 1;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-detail-title1 image {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 40rpx;
+}
+
+.price-detail-title1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 30rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.page-section {
+  width: 90%;
+  margin: 30rpx auto;
+}
+
+.weui-cells__title {
+  margin-bottom: 22rpx;
+  font-size: 24rpx;
+}
+
+.weui-cells {
+  border: 1rpx solid #cccc;
+  padding: 20rpx 0 20rpx;
+  font-size: 24rpx;
+  padding-left: 20rpx;
+}
+
+.cozy {
+  color: #337CCF;
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+
+/* 按钮 */
+.hover-class {
+  width: 90%;
+  background: #337CCF !important;
+  margin-top: 50rpx;
+}
+
+.weui-cells-price {
+  text-align: center;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: red;
+  padding-bottom: 40rpx;
+}
+
+/* 显示头像与微信名 */
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.container {
+  display: flex;
+}
+
+.row {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding-left: 20rpx;
+}
+
+
+.weui-input {
+  flex: 6;
 }
