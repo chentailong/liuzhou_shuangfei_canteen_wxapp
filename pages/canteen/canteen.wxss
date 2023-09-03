@@ -1,4 +1,4 @@
-/* pages/category/coupon.wxss */
+/* pages/category/index.wxss */
 page{
   height: 100%;
 }

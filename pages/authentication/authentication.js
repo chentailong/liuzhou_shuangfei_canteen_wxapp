@@ -123,7 +123,8 @@ Page({
         if (res.errorCode == 200) {
           wx.showToast({
             title: '提交成功！',
-            icon: "none"
+            icon: "none",
+            duration: 2000
           })
           wx.navigateBack({
             delta: 1,

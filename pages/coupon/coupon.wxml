@@ -20,18 +20,22 @@
         <view class="container">
             <block wx:for="{{couponList}}" wx:key="index">
                 <view class="coupon-list">
-                    <view class="coupon">
+                    <view class="coupon" wx:if="{{item.effectiveStatus === '未过期'}}">
                         <view class="coupon-info">
                             <view class="cpupon-item">
                                 ￥
                                 <text class="coupon-amt">{{item.reductionAmt}}</text>
                             </view>
                             <view class="coupon-expire">满￥{{item.useCondition}}可用</view>
-                            <!-- <view class="coupon-title">{{item.couponName}}</view>
-                            <view class="coupon-desc">{{item.description}}</view> -->
                             <view class="coupon-expire">有效期至：{{item.endTime}}</view>
                         </view>
-                        <view class="coupon-action">
+                        <view class="coupon-info">
+                            <view class="coupon-title">{{item.couponName}}</view>
+                            <view class="coupon-desc">{{item.couponTitle}}</view>
+                            <view class="expired" wx:if="{{ item.coupon_status === 0}}">待投放</view>
+                            <view class="normal" wx:else>等待投放</view>
+                        </view>
+                        <view style="flex:0">
                             <button class="btn-receive" bindtap="receiveCoupon" data-index="{{index}}">
                                 领取
                             </button>

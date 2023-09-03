@@ -24,7 +24,8 @@ Page({
     detailFlag: true,
     userPassword: '',
     appointmentTime: '',
-    returnMoneyStatus: ''
+    returnMoneyStatus: '',
+    detail: {}
   },
 
   /**
@@ -72,7 +73,7 @@ Page({
     } else if (that.data.index == 3) {
       //已退餐
       orderStatus = 4
-    } else if(that.data.index == 4) {
+    } else if (that.data.index == 4) {
       orderStatus = 5
     }
     var params = {
@@ -93,22 +94,14 @@ Page({
             orderList: that.data.orderList.concat(res.data.records)
           })
           for (var i = 0; i < orderItem.length; i++) {
-            let items = ''
-            if (orderItem[i].orderFeed == 0) {
-              this.items = '便民超市'
-              this.data.showShopping = false
-              this.data.showshitang = true
-            } else if (orderItem[i].orderFeed == 1) {
-              this.items = '营养食堂'
-              this.data.showShopping = false
-              this.data.showshitang = true
-            }
-            if (orderItem[i].orderRefunds.returnMoneyStatus == 1) {
-              that.data.returnMoneyStatus = '退款处理中'
-            } else if(orderItem[i].orderRefunds.returnMoneyStatus == 2) {
-              that.data.returnMoneyStatus = '退款成功'
-            } else if(orderItem[i].orderRefunds.returnMoneyStatus == -1) {
-              that.data.returnMoneyStatus = '退款失败'
+            if (orderItem[i].orderRefunds) {
+              if (orderItem[i].orderRefunds.returnMoneyStatus == 1) {
+                that.data.returnMoneyStatus = '退款处理中'
+              } else if (orderItem[i].orderRefunds.returnMoneyStatus == 2) {
+                that.data.returnMoneyStatus = '退款成功'
+              } else if (orderItem[i].orderRefunds.returnMoneyStatus == -1) {
+                that.data.returnMoneyStatus = '退款失败'
+              }
             }
             this.data.appointmentTime = orderItem[i].appointmentTime
           }
@@ -154,7 +147,24 @@ Page({
 
   // 查看详情
   showDetail(e) {
+    const that = this
+    var params = {
+      url: "/weixin/userInfo/getUserInfoByUserId",
+      method: "GET",
+      data: {
+        userId: e.currentTarget.dataset.item.userId
+      },
+      callBack: function (res) {
+        if (res.errorCode === 200) {
+          that.setData({
+            "detail.userName": res.data.userName
+          })
+        }
+      }
+    };
+    http.request(params);
     this.setData({
+      detail: e.currentTarget.dataset.item,
       detailFlag: false
     })
   },
@@ -219,7 +229,7 @@ Page({
     })
   },
   // 退款
-  refund(e){
+  refund(e) {
     var orderId = e.currentTarget.dataset.id;
     const that = this
     wx.showModal({
@@ -250,7 +260,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

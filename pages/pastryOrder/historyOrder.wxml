@@ -1,23 +1,9 @@
-<!--pages/order/order.wxml-->
 <view class="container">
-  <!-- nav -->
-  <view class="models-nav service-nav">
-    <view class="models-item" bindtap="switchNav" data-index="0"><text class="{{index == 0?'active':''}}">待付款</text>
-    </view>
-    <view class="models-item" bindtap="switchNav" data-index="1"><text class="{{index == 1?'active':''}}">未取餐</text>
-    </view>
-    <view class="models-item" bindtap="switchNav" data-index="2"><text class="{{index == 2?'active':''}}">已取餐</text>
-    </view>
-    <view class="models-item" bindtap="switchNav" data-index="3"><text class="{{index == 3?'active':''}}">退餐</text>
-    </view>
-    <view class="models-item" bindtap="switchNav" data-index="4"><text class="{{index == 4?'active':''}}">退款/售后</text>
-    </view>
-  </view>
   <!-- 列表 -->
   <scroll-view class="scroll-view" scroll-y wx:if="{{orderList.length>0}}" bindscrolltolower="getMore">
     <view class="order-list">
       <block wx:for="{{orderList}}" wx:key="orderList">
-        <view class="order-item" bindtap="showDetail" data-item="{{item}}">
+        <view class="order-item">
           <view class="order-item-addr">
             <text class="order-item-pro-content colorff961e" wx:if="{{item.orderStatus==1}}">待付款</text>
             <text class="order-item-pro-content color1dffa1" wx:if="{{item.orderStatus==2}}">未取餐</text>
@@ -55,8 +41,7 @@
             </view>
             <view class="goods-time">下单时间：{{item.createTime}}</view>
             <view class="goods-time"></view>
-            <view class="order-num">订单号：{{item.orderId}}</view>
-            <!-- <view class="tips">温馨提示：下单后20分钟送达</view> -->
+            <view class="order-num">订单号：{{item.orderId}}</view> 
           </view>
           <!-- 合计 -->
           <view class="order-item-total">
@@ -88,73 +73,6 @@
       </block>
     </view>
   </scroll-view>
-  <!-- 暂无更多 -->
-  <view class="order-no" wx:else>
-    <image src="/images/icon/no-icon.png" mode="widthFix"></image>
-    <text>暂无数据</text>
-  </view>
-
-
-
-  <!-- 选择就餐方式 -->
-  <view class="popup" wx:if="{{model}}">
-    <view class="price-detail-model1" bindtap="GoPopup"></view>
-    <view class="price-detail1">
-      <view class="price-detail-title1">
-        <image src="/images/icon/close-icon.png" mode="widthFix" bindtap="GoPopup"></image>
-        <text class="price-detail-title-con1">请选择支付餐方式</text>
-      </view>
-      <radio-group bindchange="getDiningType" data-ordernum="payType" class="pay-list">
-        <label class="pay-item">
-          <view class="pay-item-con">
-            <text>微信支付</text>
-          </view>
-          <radio value="1" />
-        </label>
-        <label class="pay-item">
-          <view class="pay-item-con">
-            <text>一卡通支付</text>
-          </view>
-          <radio value="2" />
-        </label>
-      </radio-group>
-      <button class="hover-class" bindtap="jumpPayType" data-id="{{item.orderId}}" type="primary" size="90%">确定</button>
-    </view>
-  </view>
 </view>
 
-<!-- 商品详情 --> 
-<view class="room-detail-box" hidden="{{detailFlag}}">
-  <view class="room-detail">
-    <view class="goods" style="margin:20rpx">
-      <view class="goods-list">
-        <view class='item-cont' wx:for="{{detail.orderItems}}" wx:key="orderItems" wx:for-item="itemChild" style="border-bottom:1px solid #f1f1f1">
-          <view class='prod-pic'>
-            <image src='{{itemChild.productPicture}}&x-oss-process=image/resize,h_200,w_200,m_lfit'></image>
-          </view>
-          <view class='prod-info'>
-            <view class='prodname'>{{itemChild.productName}}</view>
-            <view class='price-nums'>
-              <text class='prodprice'>
-                <text class='symbol'>￥</text>
-                <text class='big-num'>{{wxs.parsePrice(itemChild.productPrice)[0]}}</text>
-                <text class='small-num'>.{{wxs.parsePrice(itemChild.productPrice)[1]}}</text>
-              </text>
-              <text class="prodcount">x{{itemChild.productNums}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="content-bottom">
-        <text class="content-date">配送时间：{{currentTime}}</text>
-      </view>
-      <view class="goods-time">下单时间：{{detail.createTime}}</view>
-      <view class="goods-time"></view>
-      <view class="order-num">订单号码：{{detail.orderId}}</view>
-       <view class="goods-time">用户名称：{{detail.userName}}</view>
-    </view>
-  </view>
-  <!-- 关闭按钮 -->
-  <image bindtap="closeDetail" class="room-detail-colse" src="/images/icon/close.png" mode="widthFix"></image>
-</view>
 <wxs module="wxs" src="../../wxs/number.wxs" />

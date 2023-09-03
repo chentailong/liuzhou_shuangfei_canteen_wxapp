@@ -1,6 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText":"优惠券",
-  "navigationBarBackgroundColor": "#91C8E4",
-  "navigationBarTextStyle": "white"
+    "usingComponents": {},
+    "navigationBarTitleText": "优惠券",
+    "navigationBarBackgroundColor": "#91C8E4",
+    "navigationBarTextStyle": "white"
 }

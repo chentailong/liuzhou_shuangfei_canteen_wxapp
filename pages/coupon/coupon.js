@@ -6,7 +6,7 @@ Page({
         array: [
             {
                 name: '全部类型',
-                value: '4'
+                value: 4
             },
             {
                 name: '超市',
@@ -54,7 +54,7 @@ Page({
                 current: that.data.current,
                 size: 20,
                 couponName: '',
-                couponStatus: 1
+                couponStatus: '',
             },
             callBack: res => {
                 console.log(res.data.records);
@@ -62,6 +62,7 @@ Page({
                     this.setData({
                         couponList: res.data.records
                     })
+
                 } else {
                     wx.showToast({
                         title: "暂无优惠券可领取",

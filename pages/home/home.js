@@ -1,4 +1,4 @@
-// coupon.js
+// index.js
 var http = require("../../utils/http.js");
 var config = require("../../utils/config.js");
 const util = require("../../utils/util.js");

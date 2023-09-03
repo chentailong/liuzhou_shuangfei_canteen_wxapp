@@ -1,3 +1,4 @@
+/* pages/category/index.wxss */
 page{
   height: 100%;
 }
